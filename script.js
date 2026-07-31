@@ -1,8 +1,3 @@
-// ===============================
-// 🌌 MR.MIRSULTON SPACE SYSTEM
-// ===============================
-
-
 const canvas = document.getElementById("space");
 const ctx = canvas.getContext("2d");
 
@@ -11,16 +6,14 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 
-
-// ===============================
+// =====================
 // ⭐ YULDUZLAR
-// ===============================
-
+// =====================
 
 let stars = [];
 
 
-for(let i = 0; i < 300; i++){
+for(let i = 0; i < 250; i++){
 
     stars.push({
 
@@ -28,11 +21,11 @@ for(let i = 0; i < 300; i++){
 
         y: Math.random() * canvas.height,
 
-        radius: Math.random()*2+0.5,
+        size: Math.random() * 2 + 0.5,
 
         opacity: Math.random(),
 
-        speed: Math.random()*0.02+0.005
+        fade: Math.random()*0.02+0.005
 
     });
 
@@ -41,79 +34,77 @@ for(let i = 0; i < 300; i++){
 
 
 
-// ===============================
+// =====================
 // ☄️ METEORLAR
-// ===============================
-
+// =====================
 
 let meteors = [];
 
 
-
 function createMeteor(){
-
 
     meteors.push({
 
-        x: Math.random()*canvas.width+200,
+        x: Math.random()*canvas.width + 200,
 
-        y: Math.random()*200-100,
-
-
-        speedX: -(Math.random()*6+4),
-
-        speedY: Math.random()*6+4,
+        y: Math.random()*300 - 100,
 
 
-        size: Math.random()*2+2,
+        // harakat
+        speedX:-6,
+
+        speedY:6,
 
 
-        tail: Math.random()*120+80
+        size:3,
+
+        length:120
 
     });
-
 
 }
 
 
 
-setInterval(createMeteor,3500);
+setInterval(createMeteor,3000);
 
 
 
 
 
-// ===============================
-// ANIMATSIYA
-// ===============================
+// =====================
+// 🌌 CHIZISH
+// =====================
 
 
-function animate(){
+function draw(){
 
 
 ctx.clearRect(
+
 0,
+
 0,
+
 canvas.width,
+
 canvas.height
+
 );
 
 
 
-
-// ⭐ STAR DRAW
-
+// ⭐ yulduzlar
 
 stars.forEach(star=>{
 
 
-    star.opacity += star.speed;
+    star.opacity += star.fade;
 
 
+    if(star.opacity>=1 || star.opacity<=0.2){
 
-    if(star.opacity >=1 || star.opacity <=0.2){
-
-        star.speed *= -1;
+        star.fade *= -1;
 
     }
 
@@ -132,7 +123,7 @@ stars.forEach(star=>{
 
         star.y,
 
-        star.radius,
+        star.size,
 
         0,
 
@@ -150,30 +141,26 @@ stars.forEach(star=>{
 
 
 
+// ☄️ meteor
+
+
+meteors.forEach((m,index)=>{
+
+
+    // dum orqada qoladi
+
+    let tailX = m.x - m.speedX * 15;
+
+    let tailY = m.y - m.speedY * 15;
 
 
 
-// ☄️ METEOR DRAW
 
+    let gradient = ctx.createLinearGradient(
 
-meteors.forEach((meteor,index)=>{
+        m.x,
 
-
-    let tailX =
-    meteor.x - meteor.speedX * 15;
-
-
-    let tailY =
-    meteor.y - meteor.speedY * 15;
-
-
-
-    let gradient =
-    ctx.createLinearGradient(
-
-        meteor.x,
-
-        meteor.y,
+        m.y,
 
         tailX,
 
@@ -189,20 +176,20 @@ meteors.forEach((meteor,index)=>{
 
 
 
+
     ctx.beginPath();
 
 
     ctx.strokeStyle = gradient;
 
-    ctx.lineWidth = meteor.size;
-
+    ctx.lineWidth=m.size;
 
 
     ctx.moveTo(
 
-        meteor.x,
+        m.x,
 
-        meteor.y
+        m.y
 
     );
 
@@ -221,21 +208,20 @@ meteors.forEach((meteor,index)=>{
 
 
 
+    // meteor harakati
 
-    // harakat
 
-    meteor.x += meteor.speedX;
+    m.x += m.speedX;
 
-    meteor.y += meteor.speedY;
-
+    m.y += m.speedY;
 
 
 
     if(
 
-    meteor.x < -200 ||
+    m.x < -200 ||
 
-    meteor.y > canvas.height+200
+    m.y > canvas.height+200
 
     ){
 
@@ -249,99 +235,59 @@ meteors.forEach((meteor,index)=>{
 
 
 
-
-
-requestAnimationFrame(animate);
+requestAnimationFrame(draw);
 
 
 }
 
 
 
-animate();
+draw();
 
 
 
 
-
-
-
-// ===============================
+// =====================
 // 🔍 QIDIRUV
-// ===============================
-
+// =====================
 
 
 function searchSite(){
 
 
-
-let text = document
+let text =
+document
 .getElementById("search")
 .value
 .toLowerCase();
 
 
 
-if(
-
-text.includes("free") ||
-
-text.includes("fire") ||
-
-text.includes("7357211531")
-
-){
+if(text.includes("free") || text.includes("fire")){
 
 location.href="freefire.html";
 
 }
 
-
-
-else if(
-
-text.includes("fc") ||
-
-text.includes("mobile")
-
-){
+else if(text.includes("fc") || text.includes("mobile")){
 
 location.href="fcmobile.html";
 
 }
 
-
-
-else if(
-
-text.includes("about")
-
-){
+else if(text.includes("about")){
 
 location.href="about.html";
 
 }
 
-
-
-else if(
-
-text.includes("gallery")
-
-){
+else if(text.includes("gallery")){
 
 location.href="gallery.html";
 
 }
 
-
-
-else if(
-
-text.includes("instagram")
-
-){
+else if(text.includes("instagram")){
 
 window.open(
 "https://instagram.com/uzbrayzen2010",
@@ -350,8 +296,6 @@ window.open(
 
 }
 
-
-
 else{
 
 alert("Topilmadi 🔍");
@@ -359,26 +303,19 @@ alert("Topilmadi 🔍");
 }
 
 
-
 }
 
 
 
 
-
-
-
-// ===============================
-// 📱 EKRAN MOSLASHUVI
-// ===============================
-
+// ekran moslashuvi
 
 window.addEventListener("resize",()=>{
 
 
-canvas.width = window.innerWidth;
+canvas.width=window.innerWidth;
 
-canvas.height = window.innerHeight;
+canvas.height=window.innerHeight;
 
 
 });
