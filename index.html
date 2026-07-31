@@ -8,185 +8,7 @@
 
 <title>Mr.Mirsulton Gaming</title>
 
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-
-body{
-
-height:100vh;
-overflow:hidden;
-background:#000814;
-color:white;
-
-}
-
-
-/* Kosmos */
-
-canvas{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-z-index:0;
-
-}
-
-
-
-/* Markaz */
-
-.container{
-
-position:relative;
-z-index:2;
-
-height:100vh;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-text-align:center;
-
-}
-
-
-
-.logo{
-
-font-size:70px;
-
-color:#00ffff;
-
-text-shadow:
-
-0 0 20px #00ffff,
-
-0 0 50px #0077ff;
-
-}
-
-
-
-.subtitle{
-
-font-size:28px;
-
-margin:20px;
-
-color:#bdefff;
-
-}
-
-
-
-/* Qidiruv */
-
-.search{
-
-display:flex;
-
-gap:15px;
-
-}
-
-
-
-input{
-
-width:400px;
-
-padding:18px;
-
-border-radius:40px;
-
-border:2px solid cyan;
-
-background:#000;
-
-color:white;
-
-font-size:18px;
-
-}
-
-
-
-button{
-
-padding:15px 30px;
-
-border:none;
-
-border-radius:40px;
-
-background:#0077ff;
-
-color:white;
-
-cursor:pointer;
-
-}
-
-
-
-button:hover{
-
-background:#00ffff;
-
-color:black;
-
-}
-
-
-
-.hint{
-
-margin-top:25px;
-
-color:#aaa;
-
-}
-
-
-
-footer{
-
-position:fixed;
-
-bottom:20px;
-
-width:100%;
-
-text-align:center;
-
-color:#777;
-
-z-index:2;
-
-}
-
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -195,6 +17,10 @@ z-index:2;
 
 
 <canvas id="space"></canvas>
+
+
+
+<div class="planet"></div>
 
 
 
@@ -207,9 +33,9 @@ Mr.Mirsulton
 
 
 
-<div class="subtitle">
+<h2>
 🎮 Gaming Universe
-</div>
+</h2>
 
 
 
@@ -218,12 +44,16 @@ Mr.Mirsulton
 
 <input 
 id="search"
+type="text"
 placeholder="🔍 Qidiruv..."
 >
 
 
+
 <button onclick="searchSite()">
+
 SEARCH
+
 </button>
 
 
@@ -237,12 +67,26 @@ Sinab ko'ring:
 
 <br>
 
-Free Fire • FC Mobile • Instagram
+Free Fire • FC Mobile • Instagram • About
 
 </div>
 
 
+
 </div>
+
+
+
+
+<!-- AI tugmasi -->
+
+<div class="ai-button">
+
+🤖
+
+</div>
+
+
 
 
 
@@ -256,264 +100,7 @@ Free Fire • FC Mobile • Instagram
 
 
 
-<script>
-
-
-// Yulduzlar
-
-const canvas=document.getElementById("space");
-
-const ctx=canvas.getContext("2d");
-
-
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-
-
-
-let stars=[];
-
-let meteors=[];
-
-
-
-for(let i=0;i<250;i++){
-
-stars.push({
-
-x:Math.random()*canvas.width,
-
-y:Math.random()*canvas.height,
-
-size:Math.random()*2+0.5,
-
-speed:Math.random()*0.3+0.05,
-
-alpha:Math.random()
-
-});
-
-}
-
-
-
-
-
-// Meteor
-
-function meteor(){
-
-meteors.push({
-
-x:canvas.width+100,
-
-y:Math.random()*canvas.height/2,
-
-speed:8,
-
-size:Math.random()*100+50
-
-});
-
-}
-
-
-setInterval(meteor,4000);
-
-
-
-
-
-function animate(){
-
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-
-
-// yulduzlar
-
-stars.forEach(s=>{
-
-
-ctx.beginPath();
-
-
-ctx.fillStyle=
-`rgba(255,255,255,${s.alpha})`;
-
-
-ctx.arc(
-s.x,
-s.y,
-s.size,
-0,
-Math.PI*2
-);
-
-
-ctx.fill();
-
-
-
-s.y+=s.speed;
-
-
-
-s.alpha+=0.01;
-
-
-
-if(s.alpha>1){
-
-s.alpha=0.2;
-
-}
-
-
-
-if(s.y>canvas.height){
-
-s.y=0;
-
-}
-
-
-
-});
-
-
-
-
-// meteor
-
-meteors.forEach((m,i)=>{
-
-
-ctx.beginPath();
-
-ctx.strokeStyle="white";
-
-ctx.lineWidth=3;
-
-
-ctx.moveTo(m.x,m.y);
-
-
-ctx.lineTo(
-m.x-m.size,
-m.y+m.size
-);
-
-
-ctx.stroke();
-
-
-
-m.x-=m.speed;
-
-m.y+=m.speed;
-
-
-
-if(m.x<0){
-
-meteors.splice(i,1);
-
-}
-
-
-});
-
-
-
-requestAnimationFrame(animate);
-
-
-}
-
-
-
-animate();
-
-
-
-
-
-// Qidiruv
-
-
-function searchSite(){
-
-
-let text=
-document.getElementById("search")
-.value
-.toLowerCase();
-
-
-
-if(
-text.includes("free") ||
-text.includes("fire") ||
-text.includes("ff")
-){
-
-location.href="freefire.html";
-
-}
-
-
-else if(
-text.includes("fc") ||
-text.includes("mobile")
-){
-
-location.href="fcmobile.html";
-
-}
-
-
-else if(
-text.includes("instagram") ||
-text.includes("mirsulton")
-){
-
-window.open(
-"https://instagram.com/uzbrayzen2010",
-"_blank"
-);
-
-}
-
-
-else if(text!=""){
-
-
-window.open(
-"https://www.google.com/search?q="+text,
-"_blank"
-);
-
-
-}
-
-
-}
-
-
-
-window.onresize=()=>{
-
-canvas.width=innerWidth;
-
-canvas.height=innerHeight;
-
-}
-
-
-
-</script>
+<script src="script.js"></script>
 
 
 </body>
