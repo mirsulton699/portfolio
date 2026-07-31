@@ -1,6 +1,10 @@
-// 🌌 CANVAS KOSMOS
+// 🌌 KOSMOS
 
 const canvas = document.getElementById("space");
+
+
+if(canvas){
+
 const ctx = canvas.getContext("2d");
 
 
@@ -8,55 +12,46 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 
-
-// ⭐ Yulduzlar
-
 let stars = [];
 
 
-for(let i = 0; i < 250; i++){
+for(let i=0;i<250;i++){
 
-    stars.push({
+stars.push({
 
-        x: Math.random() * canvas.width,
+x:Math.random()*canvas.width,
 
-        y: Math.random() * canvas.height,
+y:Math.random()*canvas.height,
 
-        size: Math.random()*2+0.5,
+size:Math.random()*2+0.5,
 
-        opacity: Math.random(),
+opacity:Math.random(),
 
-        speed: Math.random()*0.02+0.005
+speed:Math.random()*0.02+0.005
 
-    });
+});
 
 }
 
 
 
+let meteors=[];
 
-// ☄️ Meteorlar
-
-let meteors = [];
 
 
 function createMeteor(){
 
-    meteors.push({
+meteors.push({
 
-        x: canvas.width + 100,
+x:canvas.width+100,
 
-        y: Math.random()*300,
+y:Math.random()*300,
 
-        speedX:-7,
+speedX:-7,
 
-        speedY:7,
+speedY:7
 
-        size:3,
-
-        length:120
-
-    });
+});
 
 }
 
@@ -66,64 +61,36 @@ setInterval(createMeteor,3000);
 
 
 
-
 function animate(){
 
 
-ctx.clearRect(
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
-0,
-
-0,
-
-canvas.width,
-
-canvas.height
-
-);
-
-
-
-// ⭐ chizish
 
 
 stars.forEach(star=>{
 
 
-    star.opacity += star.speed;
-
-
-    if(star.opacity > 1 || star.opacity < 0.2){
-
-        star.speed *= -1;
-
-    }
+star.opacity += star.speed;
 
 
 
-    ctx.beginPath();
+if(star.opacity>1 || star.opacity<0.2){
+
+star.speed*=-1;
+
+}
 
 
-    ctx.fillStyle =
-    `rgba(255,255,255,${star.opacity})`;
 
+ctx.beginPath();
 
-    ctx.arc(
+ctx.fillStyle=`rgba(255,255,255,${star.opacity})`;
 
-    star.x,
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
 
-    star.y,
+ctx.fill();
 
-    star.size,
-
-    0,
-
-    Math.PI*2
-
-    );
-
-
-    ctx.fill();
 
 
 });
@@ -131,69 +98,40 @@ stars.forEach(star=>{
 
 
 
-
-// ☄️ meteor
-
-
 meteors.forEach((m,index)=>{
 
 
-    let tailX = m.x - m.speedX*15;
+ctx.beginPath();
 
-    let tailY = m.y - m.speedY*15;
+ctx.strokeStyle="white";
 
-
-
-    let gradient =
-    ctx.createLinearGradient(
-
-        m.x,
-
-        m.y,
-
-        tailX,
-
-        tailY
-
-    );
+ctx.lineWidth=3;
 
 
+ctx.moveTo(m.x,m.y);
 
-    gradient.addColorStop(0,"white");
 
-    gradient.addColorStop(1,"transparent");
+ctx.lineTo(
+m.x+100,
+m.y-100
+);
+
+
+ctx.stroke();
 
 
 
-    ctx.beginPath();
+m.x+=m.speedX;
 
-
-    ctx.strokeStyle = gradient;
-
-    ctx.lineWidth = m.size;
-
-
-    ctx.moveTo(m.x,m.y);
-
-    ctx.lineTo(tailX,tailY);
-
-
-    ctx.stroke();
+m.y+=m.speedY;
 
 
 
-    m.x += m.speedX;
+if(m.x< -200){
 
-    m.y += m.speedY;
+meteors.splice(index,1);
 
-
-
-
-    if(m.x < -200 || m.y > canvas.height+200){
-
-        meteors.splice(index,1);
-
-    }
+}
 
 
 });
@@ -206,7 +144,12 @@ requestAnimationFrame(animate);
 }
 
 
+
 animate();
+
+
+
+}
 
 
 
@@ -220,49 +163,34 @@ animate();
 function searchSite(){
 
 
-let text = document
-
+let text=document
 .getElementById("search")
-
 .value
-
 .toLowerCase();
 
 
 
+if(text.includes("free")){
 
-if(text.includes("free") || text.includes("fire")){
-
-
-window.location="freefire.html";
-
+location.href="freefire.html";
 
 }
 
+else if(text.includes("fc")){
 
-else if(text.includes("fc") || text.includes("mobile")){
-
-
-window.location="fcmobile.html";
-
+location.href="fcmobile.html";
 
 }
 
+else if(text.includes("news")){
 
-else if(text.includes("achievement")){
-
-
-window.location="achievements.html";
-
+location.href="news.html";
 
 }
-
 
 else{
 
-
 alert("Topilmadi 🔍");
-
 
 }
 
@@ -287,23 +215,18 @@ let box=document.getElementById("aiBox");
 
 if(box.style.display==="block"){
 
-
 box.style.display="none";
-
 
 }
 
 else{
 
-
 box.style.display="block";
 
-
 }
 
 
 }
-
 
 
 
@@ -311,61 +234,39 @@ box.style.display="block";
 function askAI(){
 
 
-let text=document
-
-.getElementById("aiInput")
-
-.value
-
-.toLowerCase();
-
+let input=document.getElementById("aiInput").value.toLowerCase();
 
 
 let answer="";
 
 
+if(input.includes("salom")){
 
-if(text.includes("salom")){
-
-
-answer="Salom 👋 Mr.Mirsulton AI ishlayapti";
-
+answer="Salom 👋 Mr.Mirsulton AI ishlayapti 🚀";
 
 }
 
+else if(input.includes("kim")){
 
-else if(text.includes("kim")){
-
-
-answer="🚀 Sayt egasi: Mr.Mirsulton";
-
+answer="Sayt egasi: Mr.Mirsulton 🔥";
 
 }
 
+else if(input.includes("free")){
 
-else if(text.includes("free")){
-
-
-answer="🔥 Free Fire bo'limi tayyor";
-
+answer="Free Fire bo'limi tayyor 🎮";
 
 }
 
+else if(input.includes("football") || input.includes("futbol")){
 
-else if(text.includes("fc")){
-
-
-answer="⚽ FC Mobile bo'limi tayyor";
-
+answer="Football News tez orada ⚽";
 
 }
-
 
 else{
 
-
-answer="Hozircha bu savolga javob topilmadi 🤖";
-
+answer="Bu savolni hali o'rganmadim 🤖";
 
 }
 
@@ -381,14 +282,17 @@ document.getElementById("aiAnswer").innerHTML=answer;
 
 
 
-// 📱 Ekran moslashuvi
 
 window.addEventListener("resize",()=>{
 
 
+if(canvas){
+
 canvas.width=window.innerWidth;
 
 canvas.height=window.innerHeight;
+
+}
 
 
 });
