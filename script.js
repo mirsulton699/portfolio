@@ -1,47 +1,59 @@
-// 🌌 KOSMOS ANIMATSIYASI
+// ⚽ FOOTBALL API
+
+const API_KEY = "BU_YERGA_API_KALIT";
+
+
+// 🌌 KOSMOS
 
 const canvas = document.getElementById("space");
+
 
 if(canvas){
 
 const ctx = canvas.getContext("2d");
 
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 
+
 let stars = [];
 
-for(let i = 0; i < 250; i++){
+
+
+for(let i=0;i<250;i++){
 
 stars.push({
 
-x: Math.random()*canvas.width,
+x:Math.random()*canvas.width,
 
-y: Math.random()*canvas.height,
+y:Math.random()*canvas.height,
 
-size: Math.random()*2+0.5,
+size:Math.random()*2+0.5,
 
-opacity: Math.random(),
+opacity:Math.random(),
 
-speed: Math.random()*0.02+0.005
+speed:Math.random()*0.02+0.005
 
 });
+
 
 }
 
 
 
-let meteors = [];
+let meteors=[];
+
 
 
 function createMeteor(){
 
 meteors.push({
 
-x: canvas.width,
+x:canvas.width,
 
-y: Math.random()*300,
+y:Math.random()*300,
 
 speedX:-8,
 
@@ -52,7 +64,9 @@ speedY:8
 }
 
 
+
 setInterval(createMeteor,3000);
+
 
 
 
@@ -68,6 +82,7 @@ canvas.height
 
 
 
+
 stars.forEach(star=>{
 
 
@@ -76,7 +91,7 @@ star.opacity += star.speed;
 
 if(star.opacity>1 || star.opacity<0.2){
 
-star.speed *= -1;
+star.speed*=-1;
 
 }
 
@@ -84,9 +99,7 @@ star.speed *= -1;
 
 ctx.beginPath();
 
-ctx.fillStyle =
-`rgba(255,255,255,${star.opacity})`;
-
+ctx.fillStyle=`rgba(255,255,255,${star.opacity})`;
 
 ctx.arc(
 star.x,
@@ -96,12 +109,10 @@ star.size,
 Math.PI*2
 );
 
-
 ctx.fill();
 
 
 });
-
 
 
 
@@ -128,13 +139,13 @@ ctx.stroke();
 
 
 
-m.x += m.speedX;
+m.x+=m.speedX;
 
-m.y += m.speedY;
+m.y+=m.speedY;
 
 
 
-if(m.x < -200){
+if(m.x<-200){
 
 meteors.splice(index,1);
 
@@ -155,6 +166,52 @@ animate();
 
 
 }
+
+
+
+
+
+
+// ⚽ LIVE FOOTBALL
+
+async function loadFootball(){
+
+
+let score =
+document.getElementById("footballScore");
+
+
+
+if(!score) return;
+
+
+
+if(API_KEY==="BU_YERGA_API_KALIT"){
+
+
+score.innerHTML =
+"⚽ API kalit kutilmoqda...";
+
+
+return;
+
+}
+
+
+
+// API kelganda shu yer ishlaydi
+
+score.innerHTML =
+"⚽ Natijalar yuklanmoqda...";
+
+
+}
+
+
+
+
+
+loadFootball();
 
 
 
@@ -225,25 +282,20 @@ function openAI(){
 let box =
 document.getElementById("aiBox");
 
+
 if(!box) return;
 
 
 
-if(box.style.display==="block"){
-
-box.style.display="none";
-
-}
-
-else{
-
-box.style.display="block";
-
-}
+box.style.display =
+box.style.display==="block"
+?
+"none"
+:
+"block";
 
 
 }
-
 
 
 
@@ -259,6 +311,7 @@ let answer =
 document.getElementById("aiAnswer");
 
 
+
 if(!input || !answer) return;
 
 
@@ -271,17 +324,8 @@ input.value.toLowerCase();
 if(text.includes("salom")){
 
 
-answer.innerHTML=
-"Salom 👋 Mr.Mirsulton AI ishlayapti 🚀";
-
-
-}
-
-else if(text.includes("kim")){
-
-
-answer.innerHTML=
-"Sayt egasi: Mr.Mirsulton 🔥";
+answer.innerHTML =
+"Salom 👋 Mr.Mirsulton AI ishlayapti";
 
 
 }
@@ -289,8 +333,8 @@ answer.innerHTML=
 else if(text.includes("futbol")){
 
 
-answer.innerHTML=
-"⚽ LIVE Football tizimi tayyorlanmoqda";
+answer.innerHTML =
+"⚽ LIVE Football tizimi tayyor";
 
 
 }
@@ -298,7 +342,7 @@ answer.innerHTML=
 else if(text.includes("free")){
 
 
-answer.innerHTML=
+answer.innerHTML =
 "🔥 Free Fire yangiliklari tayyorlanmoqda";
 
 
@@ -307,8 +351,8 @@ answer.innerHTML=
 else{
 
 
-answer.innerHTML=
-"Hozircha bu savolni bilmayman 🤖";
+answer.innerHTML =
+"Hozircha javob topilmadi 🤖";
 
 
 }
@@ -321,7 +365,10 @@ answer.innerHTML=
 
 
 
-// 📱 Ekran o'lchami
+
+
+// 📱 RESIZE
+
 
 window.addEventListener("resize",()=>{
 
