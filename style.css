@@ -1,202 +1,6 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-
-body{
-
-    height:100vh;
-    overflow:hidden;
-    background:#000814;
-    color:white;
-
-}
-
-
-/* Kosmik fon */
-
-#space{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    z-index:0;
-
-}
-
-
-
-/* Asosiy blok */
-
-.container{
-
-    position:relative;
-
-    z-index:2;
-
-    height:100vh;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-}
-
-
-
-/* Logo */
-
-.logo{
-
-    font-size:75px;
-
-    color:#00ffff;
-
-    letter-spacing:5px;
-
-    text-shadow:
-
-    0 0 20px #00ffff,
-
-    0 0 60px #0066ff;
-
-
-    animation:pulse 3s infinite;
-
-}
-
-
-
-@keyframes pulse{
-
-50%{
-
-    text-shadow:
-
-    0 0 40px #00ffff,
-
-    0 0 100px #0066ff;
-
-}
-
-}
-
-
-
-h2{
-
-    margin:20px;
-
-    font-size:30px;
-
-    color:#bdefff;
-
-}
-
-
-
-/* Qidiruv */
-
-.search{
-
-    display:flex;
-
-    gap:15px;
-
-}
-
-
-
-.search input{
-
-
-    width:420px;
-
-    padding:18px 25px;
-
-    border-radius:50px;
-
-    border:2px solid cyan;
-
-    background:rgba(0,0,0,.7);
-
-    color:white;
-
-    font-size:18px;
-
-    outline:none;
-
-
-}
-
-
-
-.search button{
-
-
-    padding:15px 35px;
-
-    border-radius:40px;
-
-    border:none;
-
-    background:#0077ff;
-
-    color:white;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-
-}
-
-
-
-.search button:hover{
-
-
-    background:#00ffff;
-
-    color:black;
-
-    transform:scale(1.1);
-
-
-}
-
-
-
-.hint{
-
-    margin-top:25px;
-
-    color:#aaa;
-
-    font-size:18px;
-
-}
-
-
-
-/* 3D Sayyora */
+/* 🌍 Yer sayyorasi */
 
 .planet{
-
 
     position:absolute;
 
@@ -205,55 +9,59 @@ h2{
     top:25%;
 
 
-    width:200px;
+    width:260px;
 
-    height:200px;
+    height:260px;
 
 
     border-radius:50%;
 
 
-    background:
+    background-image:
+    url("https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg");
 
-    radial-gradient(circle at 30% 30%,
 
-    #00ffff,
+    background-size:cover;
 
-    #0066ff 45%,
 
-    #000 80%);
-
+    background-position:center;
 
 
     box-shadow:
 
-    0 0 50px #00ffff,
+    0 0 25px #00ffff,
 
-    0 0 120px #0066ff;
+    0 0 60px #0088ff,
+
+    0 0 120px rgba(0,150,255,.7);
 
 
-    animation:rotatePlanet 15s linear infinite;
 
+    animation:
 
-    z-index:1;
+    earthRotate 25s linear infinite;
+
 
 }
 
 
 
-@keyframes rotatePlanet{
+/* 🌍 Yer aylanishi */
+
+@keyframes earthRotate{
 
 
 from{
 
-transform:rotate(0deg);
+    background-position:0 center;
 
 }
+
 
 
 to{
 
-transform:rotate(360deg);
+    background-position:100% center;
 
 }
 
@@ -262,111 +70,92 @@ transform:rotate(360deg);
 
 
 
+/* 🌌 atmosfera nuri */
 
-/* AI tugmasi */
-
-
-.ai-button{
+.planet::before{
 
 
-    position:fixed;
-
-    right:30px;
-
-    bottom:40px;
+    content:"";
 
 
-    width:70px;
+    position:absolute;
 
-    height:70px;
+
+    inset:-10px;
 
 
     border-radius:50%;
 
 
-    background:#0077ff;
+    box-shadow:
+
+    inset 0 0 40px #00ffff;
 
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+}
 
 
-    font-size:35px;
+
+/* 🌙 Oy effekti */
+
+.planet::after{
 
 
-    cursor:pointer;
+    content:"";
+
+
+    position:absolute;
+
+
+    width:45px;
+
+    height:45px;
+
+
+    background:#ddd;
+
+
+    border-radius:50%;
+
+
+    right:-80px;
+
+    top:20px;
 
 
     box-shadow:
 
-    0 0 30px cyan;
+    0 0 20px white;
 
 
-    z-index:5;
+    animation:moonMove 8s linear infinite;
 
 
 }
 
 
 
-/* Footer */
+
+@keyframes moonMove{
 
 
-footer{
+0%{
 
-    position:fixed;
-
-    bottom:20px;
-
-    width:100%;
-
-    text-align:center;
-
-    color:#777;
-
-    z-index:3;
+transform:translateY(0);
 
 }
 
 
+50%{
 
-
-@media(max-width:700px){
-
-
-.logo{
-
-font-size:45px;
+transform:translateY(40px);
 
 }
 
 
-.planet{
+100%{
 
-width:120px;
-
-height:120px;
-
-right:5%;
-
-top:15%;
-
-}
-
-
-.search{
-
-flex-direction:column;
-
-}
-
-
-.search input{
-
-width:300px;
+transform:translateY(0);
 
 }
 
