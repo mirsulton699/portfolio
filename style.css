@@ -1,23 +1,151 @@
-body{
+/* 🌍 Mr.Mirsulton yashil sayyorasi */
 
-    margin:0;
+.planet{
 
-    padding:0;
+    position:absolute;
 
-    width:100%;
+    right:10%;
 
-    height:100vh;
+    top:25%;
 
-    overflow:hidden;
+
+    width:260px;
+
+    height:260px;
+
+
+    border-radius:50%;
 
 
     background:
 
-    radial-gradient(circle at top,#003b66,#000814 45%,#000);
+    radial-gradient(
+        circle at 35% 30%,
+        #dfff9b 0%,
+        #38ff38 25%,
+        #009933 55%,
+        #002b14 100%
+    );
 
 
-    color:white;
+    box-shadow:
 
-    font-family:Arial,sans-serif;
+    0 0 25px #00ff66,
+    0 0 70px #00cc55,
+    0 0 120px #003d1a;
+
+
+    overflow:hidden;
+
+
+    animation: planetRotate 20s linear infinite;
+
+
+    z-index:2;
+
+}
+
+
+
+
+/* sayyoradagi yerlar */
+
+.planet::before{
+
+    content:"";
+
+    position:absolute;
+
+
+    width:100%;
+
+    height:100%;
+
+
+    background:
+
+    radial-gradient(
+        ellipse at 20% 40%,
+        #003d18 0%,
+        transparent 25%
+    ),
+
+    radial-gradient(
+        ellipse at 70% 60%,
+        #005522 0%,
+        transparent 30%
+    ),
+
+    radial-gradient(
+        ellipse at 50% 20%,
+        #006622 0%,
+        transparent 20%
+    );
+
+
+    opacity:.8;
+
+
+    animation:landMove 8s linear infinite;
+
+}
+
+
+
+
+/* atmosfera */
+
+.planet::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-5px;
+
+
+    border-radius:50%;
+
+
+    border:5px solid rgba(0,255,150,.25);
+
+
+}
+
+
+
+
+
+@keyframes planetRotate{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+
+@keyframes landMove{
+
+from{
+
+transform:translateX(0);
+
+}
+
+to{
+
+transform:translateX(-40px);
+
+}
 
 }
