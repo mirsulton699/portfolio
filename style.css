@@ -1,158 +1,206 @@
-/* 📰 NEWS CENTER */
+<!DOCTYPE html>
+<html lang="uz">
 
-.news-page{
+<head>
 
-    justify-content:center;
+<meta charset="UTF-8">
 
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Mr.Mirsulton News</title>
 
+<link rel="stylesheet" href="style.css">
+
+<style>
 
 .news-container{
 
-    display:flex;
-
-    gap:30px;
-
-    margin-top:40px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:40px;
 
 }
-
 
 
 .news-card{
 
-    width:300px;
+width:300px;
 
-    padding:30px;
+padding:30px;
 
+background:rgba(0,0,0,.75);
 
-    background:rgba(0,0,0,.75);
+border:2px solid #00ffff;
 
+border-radius:25px;
 
-    border:2px solid #0077ff;
+text-align:center;
 
-
-    border-radius:25px;
-
-
-    transition:.4s;
-
-
-    box-shadow:
-
-    0 0 20px rgba(0,150,255,.4);
+transition:.4s;
 
 }
-
 
 
 .news-card:hover{
 
+transform:scale(1.08);
 
-    transform:translateY(-10px) scale(1.05);
-
-
-    box-shadow:
-
-
-    0 0 40px cyan;
-
+box-shadow:0 0 40px cyan;
 
 }
-
 
 
 .news-card h3{
 
-    font-size:30px;
+color:#00ffff;
 
-    color:#00ffff;
+font-size:30px;
 
-    margin-bottom:15px;
+margin-bottom:15px;
 
 }
-
 
 
 .news-card p{
 
-    color:#ddd;
+color:white;
 
-    line-height:25px;
+line-height:25px;
 
 }
-
 
 
 .news-card button{
 
+margin-top:20px;
 
-    margin-top:20px;
+padding:12px 30px;
 
+border:none;
 
-    padding:12px 30px;
+border-radius:30px;
 
+background:#0077ff;
 
-    border:none;
-
-
-    border-radius:30px;
-
-
-    background:#0077ff;
-
-
-    color:white;
-
-
-    cursor:pointer;
-
+color:white;
 
 }
-
-
-
-.news-card button:hover{
-
-
-    background:#00ffff;
-
-
-    color:black;
-
-
-}
-
-
 
 
 .back{
 
+display:block;
 
-    display:inline-block;
+margin:40px auto;
 
+width:200px;
 
-    margin-top:40px;
+text-align:center;
 
+padding:15px;
 
-    padding:15px 35px;
+background:#0077ff;
 
+border-radius:30px;
 
-    border-radius:30px;
+color:white;
 
-
-    background:#0077ff;
-
-
-    color:white;
-
-
-    text-decoration:none;
-
+text-decoration:none;
 
 }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<canvas id="space"></canvas>
+
+
+<div class="container">
+
+
+<h1 class="logo">
+📰 NEWS CENTER
+</h1>
+
+
+<h2>
+Mr.Mirsulton Gaming 🚀
+</h2>
+
+
+
+<div class="news-container">
+
+
+<div class="news-card">
+
+<h3>🔥 Free Fire</h3>
+
+<p>
+Yangi update, eventlar va o'yin yangiliklari.
+</p>
+
+<button>
+Ko'rish
+</button>
+
+</div>
+
+
+
+<div class="news-card">
+
+<h3>⚽ Football</h3>
+
+<p>
+Natijalar, transferlar va futbol yangiliklari.
+</p>
+
+<button>
+Ko'rish
+</button>
+
+</div>
+
+
+
+<div class="news-card">
+
+<h3>🎮 Gaming</h3>
+
+<p>
+Yangi o'yinlar va loyihalar.
+</p>
+
+<button>
+Ko'rish
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<a class="back" href="index.html">
+⬅ Bosh sahifa
+</a>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
