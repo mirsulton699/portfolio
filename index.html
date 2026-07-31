@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mirsulton Portfolio</title>
+<title>UzRayzen Gaming</title>
 
 <style>
 *{
@@ -12,111 +12,173 @@
 }
 
 body{
-    background:linear-gradient(135deg,#020617,#0b3b66);
-    color:white;
     min-height:100vh;
-    text-align:center;
+    background:#000;
+    color:white;
+    overflow-x:hidden;
 }
+
+/* Kosmik fon */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle, white 1px, transparent 2px);
+    background-size:60px 60px;
+    animation:moveStars 20s linear infinite;
+    opacity:0.5;
+}
+
+@keyframes moveStars{
+    from{
+        background-position:0 0;
+    }
+    to{
+        background-position:500px 500px;
+    }
+}
+
 
 .container{
-    padding:100px 20px;
-    animation:show 2s ease;
+    position:relative;
+    text-align:center;
+    padding:80px 20px;
 }
+
 
 h1{
-    font-size:45px;
+    font-size:50px;
     color:#00bfff;
+    text-shadow:0 0 20px #00bfff;
 }
+
 
 h2{
-    margin:20px;
-    color:#8ddcff;
+    margin:15px;
+    color:#aaa;
 }
 
-p{
-    max-width:700px;
-    margin:20px auto;
-    font-size:20px;
+
+.games{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:30px;
+    margin-top:50px;
+}
+
+
+.card{
+    width:280px;
+    padding:30px;
+    background:#07111f;
+    border:2px solid #0066ff;
+    border-radius:20px;
+    transition:0.4s;
+    cursor:pointer;
+}
+
+
+.card:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 30px #00bfff;
+    border-color:#00ffff;
+}
+
+
+.card h3{
+    color:#00ffff;
+    font-size:30px;
+}
+
+
+.card p{
+    margin:15px;
     color:#ddd;
 }
 
-.buttons a{
+
+.button{
     display:inline-block;
-    margin:15px;
+    margin-top:30px;
     padding:12px 30px;
+    border-radius:30px;
+    background:#008cff;
     color:white;
     text-decoration:none;
-    border:2px solid #00bfff;
-    border-radius:30px;
-    transition:0.4s;
+    transition:0.3s;
 }
 
-.buttons a:hover{
-    background:#00bfff;
+
+.button:hover{
+    background:white;
     color:black;
 }
 
-section{
-    padding:40px;
-    animation:show 3s ease;
-}
-
-@keyframes show{
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
 </style>
 
 </head>
 
 <body>
 
+<div class="stars"></div>
+
+
 <div class="container">
 
-<h1>Mirsulton Mirsharifhonov</h1>
+<h1>UZBRAYZEN</h1>
 
-<h2>Web Developer</h2>
+<h2>Gaming Universe 🎮</h2>
+
+
+<div class="games">
+
+
+<a href="https://instagram.com/uzbrayzen2010" target="_blank">
+<div class="card">
+
+<h3>FREE FIRE</h3>
 
 <p>
-Salom! Men web dasturlashni o'rganayotgan dasturchiman.
-HTML, CSS va JavaScript bilan ishlayman.
+🔥 Battle Royale Player
+<br>
+🆔 ID: 7357211531
+<br>
+🏆 Booyah Fighter
 </p>
 
-<div class="buttons">
-<a href="#">Loyihalarim</a>
-<a href="#">Bog'lanish</a>
 </div>
+</a>
 
-</div>
 
 
-<section>
-<h2>Men haqimda</h2>
+<a href="https://instagram.com/uzbrayzen2010" target="_blank">
+<div class="card">
+
+<h3>FC MOBILE</h3>
+
 <p>
-Texnologiya, dasturlash va yangi loyihalar yaratishga qiziqaman.
+⚽ Football Gamer
+<br>
+👑 Ultimate Team
+<br>
+🔥 Champion Spirit
 </p>
-</section>
+
+</div>
+</a>
 
 
-<section>
-<h2>Ko'nikmalar</h2>
-<p>HTML ⭐⭐⭐⭐⭐</p>
-<p>CSS ⭐⭐⭐⭐</p>
-<p>JavaScript ⭐⭐⭐</p>
-</section>
+</div>
 
 
-<script>
-window.onload=function(){
-console.log("Portfolio sayt ishga tushdi!");
-}
-</script>
+<a class="button" href="https://instagram.com/uzbrayzen2010" target="_blank">
+Instagram @uzbrayzen2010
+</a>
+
+
+</div>
 
 
 </body>
