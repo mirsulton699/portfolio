@@ -1,20 +1,14 @@
 const canvas = document.getElementById("space");
 const ctx = canvas.getContext("2d");
 
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+
+
 let stars = [];
 let meteors = [];
-
-
-function resize(){
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-}
-
-resize();
-
-window.addEventListener("resize", resize);
 
 
 
@@ -25,19 +19,19 @@ for(let i = 0; i < 250; i++){
     stars.push({
 
         x: Math.random() * canvas.width,
+
         y: Math.random() * canvas.height,
 
-        radius: Math.random() * 2 + 0.5,
+        size: Math.random() * 2 + 0.5,
 
-        opacity: Math.random(),
+        alpha: Math.random(),
 
-        speed: Math.random()*0.02 + 0.005,
-
-        move: Math.random()*0.3+0.05
+        twinkle: Math.random() * 0.02 + 0.005
 
     });
 
 }
+
 
 
 
@@ -47,166 +41,180 @@ function createMeteor(){
 
     meteors.push({
 
-        x: Math.random()*canvas.width + 200,
+        x: Math.random() * canvas.width + 300,
 
-        y: Math.random()*-300,
+        y: Math.random() * 200 - 100,
 
-        length: Math.random()*120+80,
+        speed: Math.random()*5+5,
 
-        speed: Math.random()*8+5
+        length: Math.random()*100+80
 
     });
 
 }
 
 
-// Har 3 sekundda meteor
 
-setInterval(createMeteor,3000);
-
+setInterval(createMeteor,4000);
 
 
 
-// Animatsiya
+
+
+// 🌌 Animatsiya
 
 function animate(){
 
 
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
 
 
 
-    // ⭐ Yulduzlar
+// ⭐ Yulduzlar
 
-    stars.forEach(star=>{
+stars.forEach(star=>{
 
 
-        ctx.beginPath();
+ctx.beginPath();
 
 
-        ctx.fillStyle =
-        `rgba(255,255,255,${star.opacity})`;
+ctx.fillStyle =
+`rgba(255,255,255,${star.alpha})`;
 
 
-        ctx.arc(
-            star.x,
-            star.y,
-            star.radius,
-            0,
-            Math.PI*2
-        );
 
+ctx.arc(
 
-        ctx.fill();
+star.x,
 
+star.y,
 
+star.size,
 
-        // miltillash
+0,
 
-        star.opacity += star.speed;
+Math.PI*2
 
+);
 
-        if(star.opacity >= 1 || star.opacity <=0.2){
 
-            star.speed *= -1;
 
-        }
+ctx.fill();
 
 
 
-        // sekin siljish
+star.alpha += star.twinkle;
 
-        star.y += star.move;
 
 
+if(star.alpha >= 1 || star.alpha <=0.3){
 
-        if(star.y > canvas.height){
+    star.twinkle *= -1;
 
-            star.y = 0;
+}
 
-        }
 
 
+});
 
-    });
 
 
 
 
-    // ☄️ Meteorlar
 
-    meteors.forEach((meteor,index)=>{
+// ☄️ Meteorlar
 
+meteors.forEach((meteor,index)=>{
 
-        ctx.beginPath();
 
+ctx.beginPath();
 
-        let gradient =
-        ctx.createLinearGradient(
-            meteor.x,
-            meteor.y,
-            meteor.x+meteor.length,
-            meteor.y+meteor.length
-        );
 
+let gradient =
+ctx.createLinearGradient(
 
-        gradient.addColorStop(0,"white");
+meteor.x,
 
-        gradient.addColorStop(1,"transparent");
+meteor.y,
 
+meteor.x-meteor.length,
 
+meteor.y+meteor.length
 
-        ctx.strokeStyle = gradient;
+);
 
-        ctx.lineWidth = 3;
 
 
+gradient.addColorStop(0,"white");
 
-        ctx.moveTo(
-            meteor.x,
-            meteor.y
-        );
+gradient.addColorStop(1,"transparent");
 
 
-        ctx.lineTo(
-            meteor.x+meteor.length,
-            meteor.y+meteor.length
-        );
 
+ctx.strokeStyle = gradient;
 
-        ctx.stroke();
+ctx.lineWidth = 3;
 
 
 
-        meteor.x -= meteor.speed;
+ctx.moveTo(
 
-        meteor.y += meteor.speed;
+meteor.x,
 
+meteor.y
 
+);
 
-        if(
-            meteor.y > canvas.height ||
-            meteor.x < -200
-        ){
 
-            meteors.splice(index,1);
 
-        }
+ctx.lineTo(
 
+meteor.x-meteor.length,
 
-    });
+meteor.y+meteor.length
 
+);
 
 
-    requestAnimationFrame(animate);
+
+ctx.stroke();
+
+
+
+meteor.x -= meteor.speed;
+
+meteor.y += meteor.speed;
+
+
+
+if(
+
+meteor.x < -200 ||
+
+meteor.y > canvas.height
+
+){
+
+meteors.splice(index,1);
+
+}
+
+
+
+});
+
+
+
+requestAnimationFrame(animate);
 
 
 }
+
 
 
 animate();
@@ -214,13 +222,33 @@ animate();
 
 
 
-// 🔍 Qidiruv
+
+
+// Oyna o'lchami o'zgarsa
+
+window.addEventListener("resize",()=>{
+
+
+canvas.width = window.innerWidth;
+
+canvas.height = window.innerHeight;
+
+
+});
+
+
+
+
+
+
+
+// 🔍 Qidiruv tizimi
+
 
 function searchSite(){
 
 
-let value =
-document
+let text = document
 .getElementById("search")
 .value
 .toLowerCase()
@@ -229,51 +257,101 @@ document
 
 
 if(
-value.includes("free") ||
-value.includes("fire") ||
-value.includes("ff") ||
-value.includes("garena") ||
-value.includes("7357211531")
+
+text.includes("free") ||
+
+text.includes("fire") ||
+
+text.includes("ff") ||
+
+text.includes("7357211531")
+
 ){
 
-location.href="freefire.html";
+window.location.href="freefire.html";
+
 
 }
 
 
 
 else if(
-value.includes("fc") ||
-value.includes("mobile") ||
-value.includes("futbol")
+
+text.includes("fc") ||
+
+text.includes("mobile") ||
+
+text.includes("futbol")
+
 ){
 
-location.href="fcmobile.html";
+window.location.href="fcmobile.html";
+
 
 }
 
 
 
 else if(
-value.includes("instagram") ||
-value.includes("uzbrayzen")
+
+text.includes("instagram") ||
+
+text.includes("uzbrayzen")
+
 ){
 
 window.open(
+
 "https://instagram.com/uzbrayzen2010",
+
 "_blank"
+
 );
 
+
 }
 
 
 
-else if(value !== ""){
+else if(
+
+text.includes("about") ||
+
+text.includes("men")
+
+){
+
+window.location.href="about.html";
+
+
+}
+
+
+
+else if(
+
+text.includes("gallery") ||
+
+text.includes("rasm")
+
+){
+
+window.location.href="gallery.html";
+
+
+}
+
+
+
+else if(text !== ""){
 
 
 window.open(
-"https://www.google.com/search?q="+value,
+
+"https://www.google.com/search?q="+text,
+
 "_blank"
+
 );
 
 
