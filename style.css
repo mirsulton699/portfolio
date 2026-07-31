@@ -1,4 +1,4 @@
-/* 🌍 Yer sayyorasi */
+/* 🌍 Yashil fantastik sayyora */
 
 .planet{
 
@@ -17,51 +17,104 @@
     border-radius:50%;
 
 
-    background-image:
-    url("https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg");
+    background:
 
-
-    background-size:cover;
-
-
-    background-position:center;
+    radial-gradient(
+        circle at 30% 30%,
+        #d8ff8a,
+        #42ff00 25%,
+        #008f2d 55%,
+        #003b15 85%
+    );
 
 
     box-shadow:
 
-    0 0 25px #00ffff,
+    0 0 30px #00ff66,
 
-    0 0 60px #0088ff,
+    0 0 80px #00ff44,
 
-    0 0 120px rgba(0,150,255,.7);
+    0 0 150px rgba(0,255,80,.6);
 
 
 
-    animation:
+    animation:planetMove 20s linear infinite;
 
-    earthRotate 25s linear infinite;
 
+    overflow:hidden;
 
 }
 
 
 
-/* 🌍 Yer aylanishi */
+/* sayyoradagi yashil dog'lar */
 
-@keyframes earthRotate{
+.planet::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+
+    background:
+
+    radial-gradient(
+        ellipse,
+        rgba(0,80,20,.7) 10%,
+        transparent 40%
+    );
+
+
+    background-size:80px 60px;
+
+
+    animation:landMove 12s linear infinite;
+
+}
+
+
+
+/* atmosfera */
+
+.planet::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-8px;
+
+
+    border-radius:50%;
+
+
+    box-shadow:
+
+    inset 0 0 35px #00ff99;
+
+}
+
+
+
+/* aylanish effekti */
+
+@keyframes planetMove{
 
 
 from{
 
-    background-position:0 center;
+transform:rotate(0deg);
 
 }
-
 
 
 to{
 
-    background-position:100% center;
+transform:rotate(360deg);
 
 }
 
@@ -69,93 +122,19 @@ to{
 }
 
 
-
-/* 🌌 atmosfera nuri */
-
-.planet::before{
+@keyframes landMove{
 
 
-    content:"";
+from{
 
-
-    position:absolute;
-
-
-    inset:-10px;
-
-
-    border-radius:50%;
-
-
-    box-shadow:
-
-    inset 0 0 40px #00ffff;
-
+transform:translateX(0);
 
 }
 
 
+to{
 
-/* 🌙 Oy effekti */
-
-.planet::after{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:45px;
-
-    height:45px;
-
-
-    background:#ddd;
-
-
-    border-radius:50%;
-
-
-    right:-80px;
-
-    top:20px;
-
-
-    box-shadow:
-
-    0 0 20px white;
-
-
-    animation:moonMove 8s linear infinite;
-
-
-}
-
-
-
-
-@keyframes moonMove{
-
-
-0%{
-
-transform:translateY(0);
-
-}
-
-
-50%{
-
-transform:translateY(40px);
-
-}
-
-
-100%{
-
-transform:translateY(0);
+transform:translateX(-80px);
 
 }
 
