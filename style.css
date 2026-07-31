@@ -1,130 +1,182 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 
 body{
 
-    min-height:100vh;
-    font-family:Arial, sans-serif;
-    background:#000;
-    color:white;
-    overflow-x:hidden;
-    overflow-y:auto;
+min-height:100vh;
+
+background:#000;
+
+font-family:Arial,sans-serif;
+
+color:white;
+
+overflow-x:hidden;
 
 }
 
 
 
-
-/* 🌌 Kosmos fon */
 
 #space{
 
-    position:fixed;
-    top:0;
-    left:0;
+position:fixed;
 
-    width:100%;
-    height:100%;
+top:0;
 
-    z-index:-1;
+left:0;
 
-    background:#000;
+width:100%;
+
+height:100%;
+
+z-index:-1;
 
 }
 
 
 
-
-
-/* Asosiy joy */
 
 .container{
 
-    width:90%;
-    max-width:1200px;
+width:90%;
 
-    margin:auto;
+max-width:1200px;
 
-    padding-top:60px;
-    padding-bottom:80px;
+margin:auto;
 
-    text-align:center;
+text-align:center;
+
+padding-top:60px;
 
 }
 
 
 
-
-/* Logo */
 
 .logo{
 
-    font-size:55px;
+font-size:55px;
 
-    color:#00ffff;
+color:#00ffff;
 
-    text-shadow:
-    0 0 10px cyan,
-    0 0 30px cyan;
+text-shadow:
+0 0 10px cyan,
+0 0 30px cyan;
 
 }
-
 
 
 
 h2{
 
-    margin-top:15px;
-
-    color:white;
+margin-top:15px;
 
 }
 
 
 
 
-/* Kartalar */
+
+.search{
+
+margin-top:40px;
+
+}
+
+
+
+.search input{
+
+padding:15px;
+
+width:280px;
+
+border-radius:30px;
+
+border:none;
+
+}
+
+
+
+.search button{
+
+padding:15px 30px;
+
+border-radius:30px;
+
+border:none;
+
+background:#0077ff;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+
+
+
 
 .cards{
 
-    display:flex;
+display:flex;
 
-    justify-content:center;
+justify-content:center;
 
-    gap:30px;
+gap:30px;
 
-    flex-wrap:wrap;
+flex-wrap:wrap;
 
-    margin-top:50px;
+margin-top:50px;
 
 }
+
 
 
 
 
 .card{
 
-    width:300px;
+width:300px;
 
-    min-height:200px;
+height:180px;
 
-    padding:30px;
-
-
-    background:rgba(0,0,0,0.75);
+padding:30px;
 
 
-    border:2px solid #00ffff;
+background:rgba(0,0,0,0.8);
 
 
-    border-radius:25px;
+border:2px solid cyan;
 
 
-    transition:.4s;
+border-radius:25px;
+
+
+text-decoration:none;
+
+
+color:white;
+
+
+cursor:pointer;
+
+
+transition:.3s;
+
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
 
 
 }
@@ -134,11 +186,14 @@ h2{
 
 .card:hover{
 
-    transform:scale(1.05);
 
-    box-shadow:
-    0 0 20px cyan,
-    0 0 50px cyan;
+transform:scale(1.08);
+
+
+box-shadow:
+
+0 0 30px cyan;
+
 
 }
 
@@ -147,144 +202,50 @@ h2{
 
 .card h3{
 
-    color:#00ffff;
+color:#00ffff;
 
-    font-size:28px;
+font-size:28px;
 
-    margin-bottom:20px;
-
-}
-
-
-
-.card p{
-
-    font-size:18px;
-
-    line-height:30px;
+margin-bottom:15px;
 
 }
 
 
 
 
-/* Qidiruv */
-
-.search{
-
-    margin-top:40px;
-
-}
-
-
-
-.search input{
-
-    padding:15px;
-
-    width:280px;
-
-    border-radius:30px;
-
-    border:none;
-
-    outline:none;
-
-}
-
-
-
-.search button{
-
-
-    padding:15px 30px;
-
-    margin-left:10px;
-
-    border:none;
-
-    border-radius:30px;
-
-    background:#0077ff;
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-
-
-
-
-/* Orqaga tugma */
-
-.back{
-
-
-    display:block;
-
-    width:200px;
-
-    margin:50px auto;
-
-
-    padding:15px;
-
-
-    background:#0077ff;
-
-
-    color:white;
-
-
-    text-decoration:none;
-
-
-    border-radius:30px;
-
-
-}
-
-
-
-
-
-/* AI tugma */
 
 .ai-button{
 
-    position:fixed;
+position:fixed;
 
-    right:30px;
+right:30px;
 
-    bottom:30px;
-
-
-    width:60px;
-
-    height:60px;
+bottom:30px;
 
 
-    border-radius:50%;
+background:#00ffff;
+
+color:black;
+
+width:60px;
+
+height:60px;
 
 
-    background:#00ffff;
+border-radius:50%;
 
 
-    color:black;
+display:flex;
+
+align-items:center;
+
+justify-content:center;
 
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
+font-size:30px;
 
 
-    font-size:30px;
-
-    cursor:pointer;
+cursor:pointer;
 
 
 }
@@ -295,59 +256,43 @@ h2{
 .ai-box{
 
 
-    display:none;
-
-    position:fixed;
+display:none;
 
 
-    right:30px;
-
-    bottom:100px;
+position:fixed;
 
 
-    width:300px;
+right:30px;
 
 
-    padding:20px;
+bottom:100px;
 
 
-    background:#111;
+background:#111;
 
 
-    border:2px solid cyan;
+padding:20px;
 
 
-    border-radius:20px;
+border:2px solid cyan;
+
+
+border-radius:20px;
 
 
 }
 
 
 
-/* Telefon */
-
-@media(max-width:600px){
 
 
-.logo{
-
-    font-size:35px;
-
-}
+footer{
 
 
-.card{
+text-align:center;
 
-    width:90%;
+padding:40px;
 
-}
-
-
-.search input{
-
-    width:200px;
-
-}
-
+color:#aaa;
 
 }
