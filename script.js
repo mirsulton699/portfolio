@@ -1,90 +1,70 @@
-// =========================
-// 🌌 KOSMIK FON
-// =========================
-
+// 🌌 CANVAS KOSMOS
 
 const canvas = document.getElementById("space");
-
 const ctx = canvas.getContext("2d");
 
 
 canvas.width = window.innerWidth;
-
 canvas.height = window.innerHeight;
-
-
-
-let stars = [];
-
-let meteors = [];
-
 
 
 
 // ⭐ Yulduzlar
 
-for(let i=0;i<300;i++){
+let stars = [];
 
 
-stars.push({
+for(let i = 0; i < 250; i++){
 
-x:Math.random()*canvas.width,
+    stars.push({
 
-y:Math.random()*canvas.height,
+        x: Math.random() * canvas.width,
 
-size:Math.random()*2+0.5,
+        y: Math.random() * canvas.height,
 
-opacity:Math.random(),
+        size: Math.random()*2+0.5,
 
-speed:Math.random()*0.02+0.005
+        opacity: Math.random(),
 
+        speed: Math.random()*0.02+0.005
 
-});
-
+    });
 
 }
 
 
 
 
+// ☄️ Meteorlar
 
-// ☄️ Meteor yaratish
+let meteors = [];
 
 
 function createMeteor(){
 
+    meteors.push({
 
-meteors.push({
+        x: canvas.width + 100,
 
+        y: Math.random()*300,
 
-x:Math.random()*canvas.width+200,
+        speedX:-7,
 
-y:Math.random()*200,
+        speedY:7,
 
+        size:3,
 
-speedX:-6,
+        length:120
 
-speedY:6,
-
-
-length:120
-
-
-});
-
+    });
 
 }
 
 
-
-setInterval(createMeteor,3500);
-
+setInterval(createMeteor,3000);
 
 
 
-
-
-// Chizish
 
 
 function animate(){
@@ -104,56 +84,49 @@ canvas.height
 
 
 
-
-
-// ⭐ yulduzlar
+// ⭐ chizish
 
 
 stars.forEach(star=>{
 
 
-star.opacity += star.speed;
+    star.opacity += star.speed;
+
+
+    if(star.opacity > 1 || star.opacity < 0.2){
+
+        star.speed *= -1;
+
+    }
 
 
 
-if(star.opacity>=1 || star.opacity<=0.2){
-
-star.speed*=-1;
-
-}
+    ctx.beginPath();
 
 
-
-ctx.beginPath();
-
-
-ctx.fillStyle=
-
-`rgba(255,255,255,${star.opacity})`;
+    ctx.fillStyle =
+    `rgba(255,255,255,${star.opacity})`;
 
 
+    ctx.arc(
 
-ctx.arc(
+    star.x,
 
-star.x,
+    star.y,
 
-star.y,
+    star.size,
 
-star.size,
+    0,
 
-0,
+    Math.PI*2
 
-Math.PI*2
-
-);
+    );
 
 
-ctx.fill();
-
+    ctx.fill();
 
 
 });
-
 
 
 
@@ -165,87 +138,65 @@ ctx.fill();
 meteors.forEach((m,index)=>{
 
 
+    let tailX = m.x - m.speedX*15;
 
-let tailX = m.x - m.speedX*15;
-
-let tailY = m.y - m.speedY*15;
-
-
-
-let gradient = ctx.createLinearGradient(
-
-m.x,
-
-m.y,
-
-tailX,
-
-tailY
-
-);
+    let tailY = m.y - m.speedY*15;
 
 
 
-gradient.addColorStop(0,"white");
+    let gradient =
+    ctx.createLinearGradient(
 
-gradient.addColorStop(1,"transparent");
+        m.x,
 
+        m.y,
 
+        tailX,
 
-ctx.beginPath();
+        tailY
 
-
-ctx.strokeStyle=gradient;
-
-ctx.lineWidth=3;
-
-
-
-ctx.moveTo(
-
-m.x,
-
-m.y
-
-);
-
-
-ctx.lineTo(
-
-tailX,
-
-tailY
-
-);
-
-
-ctx.stroke();
+    );
 
 
 
-m.x += m.speedX;
+    gradient.addColorStop(0,"white");
 
-m.y += m.speedY;
+    gradient.addColorStop(1,"transparent");
+
+
+
+    ctx.beginPath();
+
+
+    ctx.strokeStyle = gradient;
+
+    ctx.lineWidth = m.size;
+
+
+    ctx.moveTo(m.x,m.y);
+
+    ctx.lineTo(tailX,tailY);
+
+
+    ctx.stroke();
+
+
+
+    m.x += m.speedX;
+
+    m.y += m.speedY;
 
 
 
 
-if(
+    if(m.x < -200 || m.y > canvas.height+200){
 
-m.x<-200 ||
+        meteors.splice(index,1);
 
-m.y>canvas.height+200
-
-){
-
-meteors.splice(index,1);
-
-}
+    }
 
 
 });
-
-
 
 
 
@@ -263,17 +214,13 @@ animate();
 
 
 
-
-// =========================
 // 🔍 QIDIRUV
-// =========================
 
 
 function searchSite(){
 
 
-
-let text=document
+let text = document
 
 .getElementById("search")
 
@@ -287,57 +234,28 @@ let text=document
 if(text.includes("free") || text.includes("fire")){
 
 
-location.href="freefire.html";
+window.location="freefire.html";
 
 
 }
-
 
 
 else if(text.includes("fc") || text.includes("mobile")){
 
 
-location.href="fcmobile.html";
+window.location="fcmobile.html";
 
 
 }
 
 
-
-else if(text.includes("about")){
-
-
-location.href="about.html";
+else if(text.includes("achievement")){
 
 
-}
-
-
-
-else if(text.includes("gallery")){
-
-
-location.href="gallery.html";
+window.location="achievements.html";
 
 
 }
-
-
-
-else if(text.includes("instagram")){
-
-
-window.open(
-
-"https://instagram.com/uzbrayzen2010",
-
-"_blank"
-
-);
-
-
-}
-
 
 
 else{
@@ -358,10 +276,7 @@ alert("Topilmadi 🔍");
 
 
 
-// =========================
-// 🤖 AI YORDAMCHI
-// =========================
-
+// 🤖 AI
 
 
 function openAI(){
@@ -396,8 +311,7 @@ box.style.display="block";
 function askAI(){
 
 
-
-let input=document
+let text=document
 
 .getElementById("aiInput")
 
@@ -411,29 +325,16 @@ let answer="";
 
 
 
+if(text.includes("salom")){
 
 
-if(input.includes("free") || input.includes("fire")){
-
-
-answer="🔥 Free Fire ID: 7357211531";
-
-
-}
-
-
-
-else if(input.includes("fc")){
-
-
-answer="⚽ FC Mobile - Ultimate Team";
+answer="Salom 👋 Mr.Mirsulton AI ishlayapti";
 
 
 }
 
 
-
-else if(input.includes("ism") || input.includes("kim")){
+else if(text.includes("kim")){
 
 
 answer="🚀 Sayt egasi: Mr.Mirsulton";
@@ -442,35 +343,38 @@ answer="🚀 Sayt egasi: Mr.Mirsulton";
 }
 
 
+else if(text.includes("free")){
 
-else if(input.includes("salom")){
 
-
-answer="Salom! 🤖 Men Mr.Mirsulton AI";
+answer="🔥 Free Fire bo'limi tayyor";
 
 
 }
 
+
+else if(text.includes("fc")){
+
+
+answer="⚽ FC Mobile bo'limi tayyor";
+
+
+}
 
 
 else{
 
 
-answer="Hozircha bu savolni bilmayman 😎";
+answer="Hozircha bu savolga javob topilmadi 🤖";
 
 
 }
-
 
 
 
 document.getElementById("aiAnswer").innerHTML=answer;
 
 
-
 }
-
-
 
 
 
@@ -478,7 +382,6 @@ document.getElementById("aiAnswer").innerHTML=answer;
 
 
 // 📱 Ekran moslashuvi
-
 
 window.addEventListener("resize",()=>{
 
