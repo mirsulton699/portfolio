@@ -23,7 +23,6 @@ body{
 
 
 
-
 #space{
 
     position:fixed;
@@ -43,6 +42,56 @@ body{
 
 
 
+/* 👤 Profil */
+
+.profile{
+
+    position:fixed;
+
+    top:25px;
+
+    right:30px;
+
+
+    width:75px;
+
+    height:75px;
+
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+
+    border:3px solid #00ffff;
+
+
+    box-shadow:
+
+    0 0 25px cyan;
+
+
+    z-index:20;
+
+}
+
+
+
+.profile img{
+
+    width:100%;
+
+    height:100%;
+
+
+    object-fit:cover;
+
+}
+
+
+
+
+
 
 .container{
 
@@ -50,15 +99,20 @@ body{
 
     z-index:5;
 
+
     height:100vh;
+
 
     display:flex;
 
     flex-direction:column;
 
+
     justify-content:center;
 
+
     align-items:center;
+
 
     text-align:center;
 
@@ -68,24 +122,28 @@ body{
 
 
 
+
 .logo{
 
     font-size:75px;
 
+
     color:#00ffff;
+
 
     letter-spacing:5px;
 
 
+
     text-shadow:
+
 
     0 0 20px cyan,
 
-    0 0 60px #0066ff;
+    0 0 60px blue;
 
 
 }
-
 
 
 
@@ -94,11 +152,12 @@ h2{
 
     margin:20px;
 
+
     color:#bdefff;
 
-    font-size:30px;
-
 }
+
+
 
 
 
@@ -108,14 +167,17 @@ h2{
 
 .search{
 
+
     display:flex;
+
 
     gap:15px;
 
+
     margin-top:20px;
 
-}
 
+}
 
 
 
@@ -123,6 +185,7 @@ h2{
 
 
     width:420px;
+
 
     padding:18px 25px;
 
@@ -141,12 +204,7 @@ h2{
 
     font-size:18px;
 
-
-    outline:none;
-
-
 }
-
 
 
 
@@ -156,10 +214,10 @@ h2{
     padding:15px 35px;
 
 
-    border-radius:50px;
-
-
     border:none;
+
+
+    border-radius:50px;
 
 
     background:#0077ff;
@@ -171,32 +229,80 @@ h2{
     cursor:pointer;
 
 
-    font-size:16px;
-
-
-}
-
-
-
-.search button:hover{
-
-
-    background:#00ffff;
-
-    color:black;
-
-
 }
 
 
 
 
 
-.hint{
 
-    margin-top:25px;
+/* 🎮 Kartalar */
 
-    color:#aaa;
+
+.cards{
+
+
+    display:flex;
+
+
+    gap:25px;
+
+
+    margin-top:40px;
+
+
+}
+
+
+
+.card{
+
+
+    width:220px;
+
+
+    padding:25px;
+
+
+    border-radius:25px;
+
+
+    background:rgba(0,0,0,.6);
+
+
+    border:2px solid #0077ff;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+
+.card:hover{
+
+
+    transform:scale(1.1);
+
+
+    box-shadow:
+
+
+    0 0 30px cyan;
+
+
+}
+
+
+
+
+.card h3{
+
+
+    color:#00ffff;
+
 
 }
 
@@ -204,7 +310,8 @@ h2{
 
 
 
-/* 🤖 AI tugmasi */
+
+/* 🤖 AI tugma */
 
 
 .ai-button{
@@ -215,10 +322,12 @@ h2{
 
     right:30px;
 
+
     bottom:30px;
 
 
     width:70px;
+
 
     height:70px;
 
@@ -244,16 +353,16 @@ h2{
     cursor:pointer;
 
 
-    z-index:10;
+    z-index:20;
 
 
     box-shadow:
+
 
     0 0 30px cyan;
 
 
 }
-
 
 
 
@@ -270,6 +379,7 @@ h2{
 
     right:30px;
 
+
     bottom:120px;
 
 
@@ -279,51 +389,24 @@ h2{
     padding:25px;
 
 
-    background:rgba(0,0,0,.85);
+    border-radius:25px;
+
+
+    background:rgba(0,0,0,.9);
 
 
     border:2px solid cyan;
 
 
-    border-radius:25px;
-
-
     display:none;
 
 
-    z-index:10;
-
-
-    box-shadow:
-
-    0 0 40px cyan;
+    z-index:20;
 
 
 }
 
 
-
-.ai-box h3{
-
-
-    color:#00ffff;
-
-    margin-bottom:15px;
-
-
-}
-
-
-
-.ai-box p{
-
-
-    margin-bottom:15px;
-
-    line-height:25px;
-
-
-}
 
 
 
@@ -332,17 +415,23 @@ h2{
 
     width:100%;
 
+
+    margin-top:15px;
+
+
     padding:12px;
 
 
     border-radius:20px;
 
-    border:1px solid cyan;
-
 
     background:black;
 
+
     color:white;
+
+
+    border:1px solid cyan;
 
 
 }
@@ -352,19 +441,19 @@ h2{
 .ai-box button{
 
 
-    margin-top:15px;
-
-
     width:100%;
+
+
+    margin-top:15px;
 
 
     padding:12px;
 
 
-    border:none;
-
-
     border-radius:20px;
+
+
+    border:none;
 
 
     background:#0077ff;
@@ -374,9 +463,6 @@ h2{
 
 
 }
-
-
-
 
 
 
@@ -400,6 +486,38 @@ footer{
 
 
     z-index:5;
+
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+.logo{
+
+font-size:45px;
+
+}
+
+
+
+.cards{
+
+flex-direction:column;
+
+}
+
+
+
+.search input{
+
+width:250px;
+
+}
 
 
 }
