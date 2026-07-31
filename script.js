@@ -1,3 +1,8 @@
+// ===============================
+// 🌌 MR.MIRSULTON SPACE SYSTEM
+// ===============================
+
+
 const canvas = document.getElementById("space");
 const ctx = canvas.getContext("2d");
 
@@ -7,14 +12,15 @@ canvas.height = window.innerHeight;
 
 
 
+// ===============================
+// ⭐ YULDUZLAR
+// ===============================
+
+
 let stars = [];
-let meteors = [];
 
 
-
-// ⭐ Yulduzlar yaratish
-
-for(let i = 0; i < 250; i++){
+for(let i = 0; i < 300; i++){
 
     stars.push({
 
@@ -22,11 +28,11 @@ for(let i = 0; i < 250; i++){
 
         y: Math.random() * canvas.height,
 
-        size: Math.random() * 2 + 0.5,
+        radius: Math.random()*2+0.5,
 
-        alpha: Math.random(),
+        opacity: Math.random(),
 
-        twinkle: Math.random() * 0.02 + 0.005
+        speed: Math.random()*0.02+0.005
 
     });
 
@@ -35,33 +41,52 @@ for(let i = 0; i < 250; i++){
 
 
 
-// ☄️ Meteor yaratish
+// ===============================
+// ☄️ METEORLAR
+// ===============================
+
+
+let meteors = [];
+
+
 
 function createMeteor(){
 
+
     meteors.push({
 
-        x: Math.random() * canvas.width + 300,
+        x: Math.random()*canvas.width+200,
 
-        y: Math.random() * 200 - 100,
+        y: Math.random()*200-100,
 
-        speed: Math.random()*5+5,
 
-        length: Math.random()*100+80
+        speedX: -(Math.random()*6+4),
+
+        speedY: Math.random()*6+4,
+
+
+        size: Math.random()*2+2,
+
+
+        tail: Math.random()*120+80
 
     });
+
 
 }
 
 
 
-setInterval(createMeteor,4000);
+setInterval(createMeteor,3500);
 
 
 
 
 
-// 🌌 Animatsiya
+// ===============================
+// ANIMATSIYA
+// ===============================
+
 
 function animate(){
 
@@ -75,48 +100,48 @@ canvas.height
 
 
 
-// ⭐ Yulduzlar
+
+// ⭐ STAR DRAW
+
 
 stars.forEach(star=>{
 
 
-ctx.beginPath();
-
-
-ctx.fillStyle =
-`rgba(255,255,255,${star.alpha})`;
+    star.opacity += star.speed;
 
 
 
-ctx.arc(
+    if(star.opacity >=1 || star.opacity <=0.2){
 
-star.x,
+        star.speed *= -1;
 
-star.y,
-
-star.size,
-
-0,
-
-Math.PI*2
-
-);
+    }
 
 
 
-ctx.fill();
+    ctx.beginPath();
 
 
+    ctx.fillStyle =
+    `rgba(255,255,255,${star.opacity})`;
 
-star.alpha += star.twinkle;
+
+    ctx.arc(
+
+        star.x,
+
+        star.y,
+
+        star.radius,
+
+        0,
+
+        Math.PI*2
+
+    );
 
 
-
-if(star.alpha >= 1 || star.alpha <=0.3){
-
-    star.twinkle *= -1;
-
-}
+    ctx.fill();
 
 
 
@@ -127,86 +152,102 @@ if(star.alpha >= 1 || star.alpha <=0.3){
 
 
 
-// ☄️ Meteorlar
+
+// ☄️ METEOR DRAW
+
 
 meteors.forEach((meteor,index)=>{
 
 
-ctx.beginPath();
+    let tailX =
+    meteor.x - meteor.speedX * 15;
 
 
-let gradient =
-ctx.createLinearGradient(
-
-meteor.x,
-
-meteor.y,
-
-meteor.x-meteor.length,
-
-meteor.y+meteor.length
-
-);
+    let tailY =
+    meteor.y - meteor.speedY * 15;
 
 
 
-gradient.addColorStop(0,"white");
+    let gradient =
+    ctx.createLinearGradient(
 
-gradient.addColorStop(1,"transparent");
+        meteor.x,
 
+        meteor.y,
 
+        tailX,
 
-ctx.strokeStyle = gradient;
+        tailY
 
-ctx.lineWidth = 3;
-
-
-
-ctx.moveTo(
-
-meteor.x,
-
-meteor.y
-
-);
+    );
 
 
 
-ctx.lineTo(
+    gradient.addColorStop(0,"white");
 
-meteor.x-meteor.length,
-
-meteor.y+meteor.length
-
-);
+    gradient.addColorStop(1,"transparent");
 
 
 
-ctx.stroke();
+    ctx.beginPath();
+
+
+    ctx.strokeStyle = gradient;
+
+    ctx.lineWidth = meteor.size;
 
 
 
-meteor.x -= meteor.speed;
+    ctx.moveTo(
 
-meteor.y += meteor.speed;
+        meteor.x,
+
+        meteor.y
+
+    );
+
+
+    ctx.lineTo(
+
+        tailX,
+
+        tailY
+
+    );
+
+
+    ctx.stroke();
 
 
 
-if(
 
-meteor.x < -200 ||
 
-meteor.y > canvas.height
+    // harakat
 
-){
+    meteor.x += meteor.speedX;
 
-meteors.splice(index,1);
+    meteor.y += meteor.speedY;
 
-}
+
+
+
+    if(
+
+    meteor.x < -200 ||
+
+    meteor.y > canvas.height+200
+
+    ){
+
+        meteors.splice(index,1);
+
+    }
 
 
 
 });
+
+
 
 
 
@@ -224,7 +265,113 @@ animate();
 
 
 
-// Oyna o'lchami o'zgarsa
+
+// ===============================
+// 🔍 QIDIRUV
+// ===============================
+
+
+
+function searchSite(){
+
+
+
+let text = document
+.getElementById("search")
+.value
+.toLowerCase();
+
+
+
+if(
+
+text.includes("free") ||
+
+text.includes("fire") ||
+
+text.includes("7357211531")
+
+){
+
+location.href="freefire.html";
+
+}
+
+
+
+else if(
+
+text.includes("fc") ||
+
+text.includes("mobile")
+
+){
+
+location.href="fcmobile.html";
+
+}
+
+
+
+else if(
+
+text.includes("about")
+
+){
+
+location.href="about.html";
+
+}
+
+
+
+else if(
+
+text.includes("gallery")
+
+){
+
+location.href="gallery.html";
+
+}
+
+
+
+else if(
+
+text.includes("instagram")
+
+){
+
+window.open(
+"https://instagram.com/uzbrayzen2010",
+"_blank"
+);
+
+}
+
+
+
+else{
+
+alert("Topilmadi 🔍");
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// 📱 EKRAN MOSLASHUVI
+// ===============================
+
 
 window.addEventListener("resize",()=>{
 
@@ -235,125 +382,3 @@ canvas.height = window.innerHeight;
 
 
 });
-
-
-
-
-
-
-
-// 🔍 Qidiruv tizimi
-
-
-function searchSite(){
-
-
-let text = document
-.getElementById("search")
-.value
-.toLowerCase()
-.trim();
-
-
-
-if(
-
-text.includes("free") ||
-
-text.includes("fire") ||
-
-text.includes("ff") ||
-
-text.includes("7357211531")
-
-){
-
-window.location.href="freefire.html";
-
-
-}
-
-
-
-else if(
-
-text.includes("fc") ||
-
-text.includes("mobile") ||
-
-text.includes("futbol")
-
-){
-
-window.location.href="fcmobile.html";
-
-
-}
-
-
-
-else if(
-
-text.includes("instagram") ||
-
-text.includes("uzbrayzen")
-
-){
-
-window.open(
-
-"https://instagram.com/uzbrayzen2010",
-
-"_blank"
-
-);
-
-
-}
-
-
-
-else if(
-
-text.includes("about") ||
-
-text.includes("men")
-
-){
-
-window.location.href="about.html";
-
-
-}
-
-
-
-else if(
-
-text.includes("gallery") ||
-
-text.includes("rasm")
-
-){
-
-window.location.href="gallery.html";
-
-
-}
-
-
-
-else if(text !== ""){
-
-
-window.open(
-
-"https://www.google.com/search?q="+text,
-
-"_blank"
-
-);
-
-
-}
-}
