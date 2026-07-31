@@ -1,12 +1,10 @@
-// 🌌 KOSMOS
+// 🌌 KOSMOS ANIMATSIYASI
 
 const canvas = document.getElementById("space");
-
 
 if(canvas){
 
 const ctx = canvas.getContext("2d");
-
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -14,20 +12,19 @@ canvas.height = window.innerHeight;
 
 let stars = [];
 
-
-for(let i=0;i<250;i++){
+for(let i = 0; i < 250; i++){
 
 stars.push({
 
-x:Math.random()*canvas.width,
+x: Math.random()*canvas.width,
 
-y:Math.random()*canvas.height,
+y: Math.random()*canvas.height,
 
-size:Math.random()*2+0.5,
+size: Math.random()*2+0.5,
 
-opacity:Math.random(),
+opacity: Math.random(),
 
-speed:Math.random()*0.02+0.005
+speed: Math.random()*0.02+0.005
 
 });
 
@@ -35,21 +32,20 @@ speed:Math.random()*0.02+0.005
 
 
 
-let meteors=[];
-
+let meteors = [];
 
 
 function createMeteor(){
 
 meteors.push({
 
-x:canvas.width+100,
+x: canvas.width,
 
-y:Math.random()*300,
+y: Math.random()*300,
 
-speedX:-7,
+speedX:-8,
 
-speedY:7
+speedY:8
 
 });
 
@@ -60,11 +56,15 @@ setInterval(createMeteor,3000);
 
 
 
-
 function animate(){
 
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
 
 
 
@@ -74,10 +74,9 @@ stars.forEach(star=>{
 star.opacity += star.speed;
 
 
-
 if(star.opacity>1 || star.opacity<0.2){
 
-star.speed*=-1;
+star.speed *= -1;
 
 }
 
@@ -85,15 +84,24 @@ star.speed*=-1;
 
 ctx.beginPath();
 
-ctx.fillStyle=`rgba(255,255,255,${star.opacity})`;
+ctx.fillStyle =
+`rgba(255,255,255,${star.opacity})`;
 
-ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
+
+ctx.arc(
+star.x,
+star.y,
+star.size,
+0,
+Math.PI*2
+);
+
 
 ctx.fill();
 
 
-
 });
+
 
 
 
@@ -110,10 +118,9 @@ ctx.lineWidth=3;
 
 ctx.moveTo(m.x,m.y);
 
-
 ctx.lineTo(
-m.x+100,
-m.y-100
+m.x+120,
+m.y-120
 );
 
 
@@ -121,13 +128,13 @@ ctx.stroke();
 
 
 
-m.x+=m.speedX;
+m.x += m.speedX;
 
-m.y+=m.speedY;
+m.y += m.speedY;
 
 
 
-if(m.x< -200){
+if(m.x < -200){
 
 meteors.splice(index,1);
 
@@ -144,12 +151,11 @@ requestAnimationFrame(animate);
 }
 
 
-
 animate();
 
 
-
 }
+
 
 
 
@@ -159,12 +165,11 @@ animate();
 
 // 🔍 QIDIRUV
 
-
 function searchSite(){
 
 
-let text=document
-.getElementById("search")
+let text =
+document.getElementById("search")
 .value
 .toLowerCase();
 
@@ -172,25 +177,33 @@ let text=document
 
 if(text.includes("free")){
 
+
 location.href="freefire.html";
+
 
 }
 
 else if(text.includes("fc")){
 
+
 location.href="fcmobile.html";
+
 
 }
 
-else if(text.includes("news")){
+else if(text.includes("live") || text.includes("news")){
+
 
 location.href="news.html";
+
 
 }
 
 else{
 
+
 alert("Topilmadi 🔍");
+
 
 }
 
@@ -206,11 +219,14 @@ alert("Topilmadi 🔍");
 
 // 🤖 AI
 
-
 function openAI(){
 
 
-let box=document.getElementById("aiBox");
+let box =
+document.getElementById("aiBox");
+
+if(!box) return;
+
 
 
 if(box.style.display==="block"){
@@ -231,57 +247,81 @@ box.style.display="block";
 
 
 
+
 function askAI(){
 
 
-let input=document.getElementById("aiInput").value.toLowerCase();
+let input =
+document.getElementById("aiInput");
 
 
-let answer="";
+let answer =
+document.getElementById("aiAnswer");
 
 
-if(input.includes("salom")){
+if(!input || !answer) return;
 
-answer="Salom 👋 Mr.Mirsulton AI ishlayapti 🚀";
+
+
+let text =
+input.value.toLowerCase();
+
+
+
+if(text.includes("salom")){
+
+
+answer.innerHTML=
+"Salom 👋 Mr.Mirsulton AI ishlayapti 🚀";
+
 
 }
 
-else if(input.includes("kim")){
+else if(text.includes("kim")){
 
-answer="Sayt egasi: Mr.Mirsulton 🔥";
 
-}
+answer.innerHTML=
+"Sayt egasi: Mr.Mirsulton 🔥";
 
-else if(input.includes("free")){
-
-answer="Free Fire bo'limi tayyor 🎮";
 
 }
 
-else if(input.includes("football") || input.includes("futbol")){
+else if(text.includes("futbol")){
 
-answer="Football News tez orada ⚽";
+
+answer.innerHTML=
+"⚽ LIVE Football tizimi tayyorlanmoqda";
+
+
+}
+
+else if(text.includes("free")){
+
+
+answer.innerHTML=
+"🔥 Free Fire yangiliklari tayyorlanmoqda";
+
 
 }
 
 else{
 
-answer="Bu savolni hali o'rganmadim 🤖";
 
-}
-
-
-
-document.getElementById("aiAnswer").innerHTML=answer;
+answer.innerHTML=
+"Hozircha bu savolni bilmayman 🤖";
 
 
 }
 
 
+}
 
 
 
 
+
+
+// 📱 Ekran o'lchami
 
 window.addEventListener("resize",()=>{
 
