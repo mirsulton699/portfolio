@@ -1,157 +1,141 @@
-// 🔑 API KEY
+// 🔑 FOOTBALL API KEY
 const API_KEY = "b4c21563f064a2e3e86dcd59051e4844";
 
 
-// 🌌 KOSMOS
+
+// 🌌 KOSMOS (FAKAT YULDUZLAR)
 
 const canvas = document.getElementById("space");
+
 
 if(canvas){
 
 const ctx = canvas.getContext("2d");
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 
-let stars=[];
+
+let stars = [];
 
 
-for(let i=0;i<250;i++){
+for(let i = 0; i < 250; i++){
 
 stars.push({
 
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2+0.5,
-opacity:Math.random(),
-speed:0.01
+x: Math.random()*canvas.width,
+
+y: Math.random()*canvas.height,
+
+size: Math.random()*2+0.5,
+
+opacity: Math.random(),
+
+speed: Math.random()*0.02+0.005
 
 });
+
 
 }
 
 
 
-let meteors=[];
+function animateSpace(){
 
 
-setInterval(()=>{
-
-meteors.push({
-
-x:canvas.width,
-y:Math.random()*300,
-speed:-8
-
-});
-
-},3000);
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
 
 
 
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
+stars.forEach(star=>{
 
 
-
-stars.forEach(s=>{
-
-
-s.opacity+=s.speed;
+star.opacity += star.speed;
 
 
-if(s.opacity>1 || s.opacity<0.2){
 
-s.speed*=-1;
+if(star.opacity > 1 || star.opacity < 0.2){
+
+star.speed *= -1;
 
 }
+
 
 
 ctx.beginPath();
 
-ctx.fillStyle=`rgba(255,255,255,${s.opacity})`;
+
+ctx.fillStyle =
+`rgba(255,255,255,${star.opacity})`;
+
+
 
 ctx.arc(
-s.x,
-s.y,
-s.size,
+
+star.x,
+
+star.y,
+
+star.size,
+
 0,
+
 Math.PI*2
+
 );
+
+
 
 ctx.fill();
 
 
-});
-
-
-
-
-meteors.forEach((m,i)=>{
-
-
-ctx.beginPath();
-
-ctx.strokeStyle="white";
-
-ctx.moveTo(m.x,m.y);
-
-ctx.lineTo(
-m.x+120,
-m.y-120
-);
-
-ctx.stroke();
-
-
-m.x+=m.speed;
-
-
-
-if(m.x< -200){
-
-meteors.splice(i,1);
-
-}
-
 
 });
 
 
 
-requestAnimationFrame(animate);
-
-}
-
-
-animate();
+requestAnimationFrame(animateSpace);
 
 
 }
 
 
 
+animateSpace();
 
-// ⚽ HAQIQIY FUTBOL NATIJASI
+
+}
+
+
+
+
+
+
+// ⚽ LIVE FOOTBALL API
 
 
 async function loadFootball(){
 
 
-let box=document.getElementById("footballScore");
+let score =
+document.getElementById("footballScore");
 
 
-if(!box)return;
+if(!score) return;
 
 
 
 try{
 
 
-let response=await fetch(
+let response = await fetch(
 
 "https://v3.football.api-sports.io/fixtures?live=all",
 
@@ -159,7 +143,7 @@ let response=await fetch(
 
 headers:{
 
-"x-apisports-key":API_KEY
+"x-apisports-key": API_KEY
 
 }
 
@@ -169,50 +153,52 @@ headers:{
 
 
 
-let data=await response.json();
+let data = await response.json();
 
 
 
-if(data.response.length===0){
+if(!data.response || data.response.length===0){
 
 
-box.innerHTML="⚽ Hozir jonli o'yin yo'q";
+score.innerHTML =
+"⚽ Hozir jonli o'yin yo'q";
 
 
 return;
+
 
 }
 
 
 
-let result="";
+let result = "";
 
 
 
-data.response.forEach(game=>{
+data.response.slice(0,10).forEach(match=>{
 
 
-result+=`
+result += `
 
 <p>
 
-⚽ ${game.teams.home.name}
+⚽ ${match.teams.home.name}
 
 <b>
 
-${game.goals.home}
+${match.goals.home}
 
 -
 
-${game.goals.away}
+${match.goals.away}
 
 </b>
 
-${game.teams.away.name}
+${match.teams.away.name}
 
 <br>
 
-⏱ ${game.fixture.status.long}
+⏱ ${match.fixture.status.elapsed || ""}'
 
 </p>
 
@@ -225,7 +211,8 @@ ${game.teams.away.name}
 
 
 
-box.innerHTML=result;
+score.innerHTML = result;
+
 
 
 }
@@ -234,10 +221,11 @@ box.innerHTML=result;
 catch(error){
 
 
-box.innerHTML="❌ API xatosi";
-
-
 console.log(error);
+
+
+score.innerHTML =
+"❌ API xatosi";
 
 
 }
@@ -253,38 +241,67 @@ loadFootball();
 
 
 
+
 // 🔍 QIDIRUV
+
 
 function searchSite(){
 
 
-let text=document
-.getElementById("search")
+let text =
+document.getElementById("search")
 .value
 .toLowerCase();
 
 
 
-if(text.includes("live")||text.includes("news")){
+if(text.includes("free") || text.includes("fire")){
 
-location.href="news.html";
-
-}
-
-else if(text.includes("free")){
 
 location.href="freefire.html";
 
+
 }
+
+
+else if(text.includes("fc") || text.includes("mobile")){
+
+
+location.href="fcmobile.html";
+
+
+}
+
+
+else if(text.includes("achievement")){
+
+
+location.href="achievements.html";
+
+
+}
+
+
+else if(text.includes("live") || text.includes("football")){
+
+
+location.href="livefootball.html";
+
+
+}
+
 
 else{
 
+
 alert("Topilmadi 🔍");
 
+
 }
 
 
 }
+
 
 
 
@@ -292,36 +309,124 @@ alert("Topilmadi 🔍");
 
 // 🤖 AI
 
+
 function openAI(){
 
-let box=document.getElementById("aiBox");
 
-if(box){
+let box =
+document.getElementById("aiBox");
 
-box.style.display=
-box.style.display=="block"
-?"none"
-:"block";
+
+if(!box) return;
+
+
+
+if(box.style.display==="block"){
+
+
+box.style.display="none";
+
 
 }
 
+else{
+
+
+box.style.display="block";
+
+
 }
+
+
+}
+
+
 
 
 
 function askAI(){
 
 
-let input=document.getElementById("aiInput");
-
-let answer=document.getElementById("aiAnswer");
-
-
-if(!input||!answer)return;
+let input =
+document.getElementById("aiInput");
 
 
-answer.innerHTML=
-"🤖 AI ishlayapti...";
+let answer =
+document.getElementById("aiAnswer");
+
+
+
+if(!input || !answer) return;
+
+
+
+let text =
+input.value.toLowerCase();
+
+
+
+if(text.includes("salom")){
+
+
+answer.innerHTML =
+"Salom 👋 Mr.Mirsulton AI";
 
 
 }
+
+
+else if(text.includes("football")){
+
+
+answer.innerHTML =
+"⚽ LIVE Football ishlamoqda";
+
+
+}
+
+
+else if(text.includes("free")){
+
+
+answer.innerHTML =
+"🔥 Free Fire bo'limi tayyor";
+
+
+}
+
+
+else{
+
+
+answer.innerHTML =
+"🤖 Hozircha javob topilmadi";
+
+
+}
+
+
+}
+
+
+
+
+
+
+// 📱 EKRAN MOSLASHUVI
+
+
+window.addEventListener("resize",()=>{
+
+
+if(canvas){
+
+
+canvas.width = window.innerWidth;
+
+canvas.height = window.innerHeight;
+
+
+}
+
+
+});
