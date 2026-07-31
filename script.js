@@ -4,25 +4,36 @@ const ctx = canvas.getContext("2d");
 let stars = [];
 let meteors = [];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function resize(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener("resize", resize);
 
 
-// Yulduz yaratish
 
-for(let i = 0; i < 200; i++){
+// ⭐ Yulduzlar yaratish
+
+for(let i = 0; i < 250; i++){
 
     stars.push({
 
         x: Math.random() * canvas.width,
-
         y: Math.random() * canvas.height,
 
-        size: Math.random() * 2 + 1,
+        radius: Math.random() * 2 + 0.5,
 
-        speed: Math.random() * 0.2 + 0.05,
+        opacity: Math.random(),
 
-        alpha: Math.random()
+        speed: Math.random()*0.02 + 0.005,
+
+        move: Math.random()*0.3+0.05
 
     });
 
@@ -30,26 +41,29 @@ for(let i = 0; i < 200; i++){
 
 
 
-// Meteor yaratish
+// ☄️ Meteor yaratish
 
 function createMeteor(){
 
     meteors.push({
 
-        x: Math.random()*canvas.width,
+        x: Math.random()*canvas.width + 200,
 
-        y: -50,
+        y: Math.random()*-300,
 
-        length: Math.random()*80+50,
+        length: Math.random()*120+80,
 
-        speed: Math.random()*6+5
+        speed: Math.random()*8+5
 
     });
 
 }
 
 
-setInterval(createMeteor,5000);
+// Har 3 sekundda meteor
+
+setInterval(createMeteor,3000);
+
 
 
 
@@ -57,51 +71,80 @@ setInterval(createMeteor,5000);
 
 function animate(){
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
 
-    // yulduzlar
+
+    // ⭐ Yulduzlar
 
     stars.forEach(star=>{
 
 
         ctx.beginPath();
 
+
         ctx.fillStyle =
-        `rgba(255,255,255,${star.alpha})`;
+        `rgba(255,255,255,${star.opacity})`;
+
 
         ctx.arc(
             star.x,
             star.y,
-            star.size,
+            star.radius,
             0,
             Math.PI*2
         );
+
 
         ctx.fill();
 
 
 
-        star.alpha += 0.01 * star.speed;
+        // miltillash
+
+        star.opacity += star.speed;
 
 
-        if(star.alpha > 1 || star.alpha < 0.2){
+        if(star.opacity >= 1 || star.opacity <=0.2){
 
             star.speed *= -1;
 
         }
 
 
+
+        // sekin siljish
+
+        star.y += star.move;
+
+
+
+        if(star.y > canvas.height){
+
+            star.y = 0;
+
+        }
+
+
+
     });
 
 
 
-    // meteorlar
+
+    // ☄️ Meteorlar
 
     meteors.forEach((meteor,index)=>{
 
 
         ctx.beginPath();
+
 
         let gradient =
         ctx.createLinearGradient(
@@ -113,12 +156,15 @@ function animate(){
 
 
         gradient.addColorStop(0,"white");
+
         gradient.addColorStop(1,"transparent");
+
 
 
         ctx.strokeStyle = gradient;
 
         ctx.lineWidth = 3;
+
 
 
         ctx.moveTo(
@@ -138,11 +184,15 @@ function animate(){
 
 
         meteor.x -= meteor.speed;
+
         meteor.y += meteor.speed;
 
 
 
-        if(meteor.y > canvas.height){
+        if(
+            meteor.y > canvas.height ||
+            meteor.x < -200
+        ){
 
             meteors.splice(index,1);
 
@@ -155,6 +205,7 @@ function animate(){
 
     requestAnimationFrame(animate);
 
+
 }
 
 
@@ -163,69 +214,58 @@ animate();
 
 
 
-// Oyna o'lchami o'zgarsa
-
-window.addEventListener("resize",()=>{
-
-    canvas.width = window.innerWidth;
-
-    canvas.height = window.innerHeight;
-
-});
-
-
-
-
-// Qidiruv
+// 🔍 Qidiruv
 
 function searchSite(){
 
 
 let value =
-document.getElementById("search")
+document
+.getElementById("search")
 .value
 .toLowerCase()
 .trim();
 
 
 
-if(value.includes("free") || value.includes("ff") || value.includes("7357211531")){
+if(
+value.includes("free") ||
+value.includes("fire") ||
+value.includes("ff") ||
+value.includes("garena") ||
+value.includes("7357211531")
+){
 
-
-window.location.href="freefire.html";
-
-
-}
-
-
-else if(value.includes("fc") || value.includes("mobile")){
-
-
-window.location.href="fcmobile.html";
-
+location.href="freefire.html";
 
 }
 
 
-else if(value.includes("instagram") || value.includes("uzbrayzen")){
 
+else if(
+value.includes("fc") ||
+value.includes("mobile") ||
+value.includes("futbol")
+){
+
+location.href="fcmobile.html";
+
+}
+
+
+
+else if(
+value.includes("instagram") ||
+value.includes("uzbrayzen")
+){
 
 window.open(
 "https://instagram.com/uzbrayzen2010",
 "_blank"
 );
 
-
 }
 
-
-else if(value.includes("about")){
-
-
-window.location.href="about.html";
-
-
-}
 
 
 else if(value !== ""){
