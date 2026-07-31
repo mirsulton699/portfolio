@@ -1,345 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 
 <head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>UZBRAYZEN Gaming</title>
 
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
-
-html{
-    scroll-behavior:smooth;
-}
-
-
-body{
-
-    min-height:100vh;
-
-    color:white;
-
-    background:
-    radial-gradient(circle at top,#004080,#000814 50%,#000);
-
-    overflow-x:hidden;
-
-}
-
-
-/* kosmik yulduzlar */
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-
-    width:200%;
-
-    height:200%;
-
-    background-image:
-    radial-gradient(white 1px,transparent 2px);
-
-    background-size:70px 70px;
-
-    animation:stars 20s linear infinite;
-
-    opacity:.4;
-
-    z-index:-1;
-
-}
-
-
-@keyframes stars{
-
-from{
-    transform:translate(0,0);
-}
-
-to{
-    transform:translate(-300px,300px);
-}
-
-}
-
-
-
-header{
-
-    text-align:center;
-
-    padding:80px 20px;
-
-}
-
-
-
-.logo{
-
-    font-size:65px;
-
-    color:#00ffff;
-
-    text-shadow:
-    0 0 15px #00ffff,
-    0 0 40px #0077ff;
-
-}
-
-
-
-header p{
-
-    font-size:25px;
-
-    color:#bdefff;
-
-}
-
-
-
-.games{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:40px;
-
-    flex-wrap:wrap;
-
-    padding:50px;
-
-}
-
-
-
-.card{
-
-    width:350px;
-
-    padding:40px;
-
-    text-align:center;
-
-    background:rgba(0,10,30,.8);
-
-    border:2px solid #0077ff;
-
-    border-radius:25px;
-
-    transition:.4s;
-
-}
-
-
-
-.card:hover{
-
-    transform:scale(1.1);
-
-    box-shadow:
-    0 0 30px #00ffff;
-
-}
-
-
-
-.card h1{
-
-    font-size:45px;
-
-    color:#00ffff;
-
-}
-
-
-
-.card p{
-
-    margin-top:20px;
-
-    line-height:35px;
-
-    font-size:20px;
-
-}
-
-
-
-a{
-
-    text-decoration:none;
-
-    color:white;
-
-}
-
-
-
-.instagram{
-
-    display:block;
-
-    width:270px;
-
-    margin:30px auto;
-
-    padding:15px;
-
-    background:#0077ff;
-
-    border-radius:30px;
-
-    text-align:center;
-
-}
-
-
-
-.arrow{
-
-    position:fixed;
-
-    right:30px;
-
-    bottom:30px;
-
-    width:55px;
-
-    height:55px;
-
-    border-radius:50%;
-
-    background:#0077ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:30px;
-
-}
-
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
-
 
 
 <body>
 
 
+<canvas id="space"></canvas>
+
+
 <header>
 
-<div class="logo">
+<h1 class="logo">
 UZBRAYZEN
-</div>
-
+</h1>
 
 <p>
 🎮 Gaming Universe
 </p>
 
 
+<div class="search-box">
+
+<input 
+id="search"
+type="text"
+placeholder="🔍 Qidiruv..."
+>
+
+
+<button onclick="searchSite()">
+SEARCH
+</button>
+
+
+</div>
+
+
+<div class="hint">
+
+Sinab ko'ring:
+<br>
+
+Free Fire • FC Mobile • Instagram • About
+
+</div>
+
+
 </header>
 
 
 
-<div class="games">
+<section class="hidden-links">
 
 
-<a href="freefire.html">
+<a href="freefire.html" id="freefire">
+FREE FIRE
+</a>
 
-<div class="card">
+
+<a href="fcmobile.html" id="fcmobile">
+FC MOBILE
+</a>
 
 
-<h1>FREE FIRE</h1>
+<a href="about.html" id="about">
+ABOUT
+</a>
 
+
+<a href="gallery.html" id="gallery">
+GALLERY
+</a>
+
+
+<a href="contact.html" id="contact">
+CONTACT
+</a>
+
+
+</section>
+
+
+
+
+<footer>
 
 <p>
-
-🔥 Battle Royale Player
-
-<br>
-
-🆔 ID: 7357211531
-
-<br>
-
-🏆 Booyah Fighter
-
+© 2026 UZBRAYZEN Gaming
 </p>
 
 
-</div>
-
-</a>
+</footer>
 
 
 
-<a href="fcmobile.html">
 
-
-<div class="card">
-
-
-<h1>FC MOBILE</h1>
-
-
-<p>
-
-⚽ Football Gamer
-
-<br>
-
-👑 Ultimate Team
-
-<br>
-
-🔥 Champion Spirit
-
-</p>
-
-
-</div>
-
-
-</a>
-
-
-
-</div>
-
-
-
-<a class="instagram" href="https://instagram.com/uzbrayzen2010">
-
-📸 @uzbrayzen2010
-
-</a>
-
-
-
-<a class="arrow" href="#">
-
-⬆
-
-</a>
-
+<script src="script.js"></script>
 
 
 </body>
