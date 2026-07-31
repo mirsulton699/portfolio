@@ -1,206 +1,388 @@
-<!DOCTYPE html>
-<html lang="uz">
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
 
-<head>
 
-<meta charset="UTF-8">
+body{
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    width:100%;
+    height:100vh;
 
-<title>Mr.Mirsulton News</title>
+    overflow:hidden;
 
-<link rel="stylesheet" href="style.css">
+    background:
+    radial-gradient(circle at top,#003b66,#000814 50%,#000);
 
-<style>
-
-.news-container{
-
-display:flex;
-gap:30px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:40px;
+    color:white;
 
 }
 
 
-.news-card{
 
-width:300px;
+#space{
 
-padding:30px;
+    position:fixed;
 
-background:rgba(0,0,0,.75);
+    top:0;
+    left:0;
 
-border:2px solid #00ffff;
+    width:100%;
+    height:100%;
 
-border-radius:25px;
-
-text-align:center;
-
-transition:.4s;
+    z-index:0;
 
 }
 
 
-.news-card:hover{
 
-transform:scale(1.08);
+/* 👤 Profil */
 
-box-shadow:0 0 40px cyan;
+.profile{
 
-}
+    position:fixed;
 
+    top:25px;
 
-.news-card h3{
+    right:30px;
 
-color:#00ffff;
+    width:75px;
 
-font-size:30px;
+    height:75px;
 
-margin-bottom:15px;
+    border-radius:50%;
 
-}
+    overflow:hidden;
 
+    border:3px solid cyan;
 
-.news-card p{
+    box-shadow:0 0 25px cyan;
 
-color:white;
-
-line-height:25px;
-
-}
-
-
-.news-card button{
-
-margin-top:20px;
-
-padding:12px 30px;
-
-border:none;
-
-border-radius:30px;
-
-background:#0077ff;
-
-color:white;
+    z-index:20;
 
 }
 
 
-.back{
 
-display:block;
+.profile img{
 
-margin:40px auto;
+    width:100%;
+    height:100%;
 
-width:200px;
-
-text-align:center;
-
-padding:15px;
-
-background:#0077ff;
-
-border-radius:30px;
-
-color:white;
-
-text-decoration:none;
+    object-fit:cover;
 
 }
 
-</style>
-
-</head>
-
-
-<body>
-
-
-<canvas id="space"></canvas>
-
-
-<div class="container">
-
-
-<h1 class="logo">
-📰 NEWS CENTER
-</h1>
-
-
-<h2>
-Mr.Mirsulton Gaming 🚀
-</h2>
 
 
 
-<div class="news-container">
+/* Asosiy */
 
+.container{
 
-<div class="news-card">
+    position:relative;
 
-<h3>🔥 Free Fire</h3>
+    z-index:5;
 
-<p>
-Yangi update, eventlar va o'yin yangiliklari.
-</p>
+    height:100vh;
 
-<button>
-Ko'rish
-</button>
+    display:flex;
 
-</div>
+    flex-direction:column;
 
+    justify-content:center;
 
+    align-items:center;
 
-<div class="news-card">
+    text-align:center;
 
-<h3>⚽ Football</h3>
-
-<p>
-Natijalar, transferlar va futbol yangiliklari.
-</p>
-
-<button>
-Ko'rish
-</button>
-
-</div>
+}
 
 
 
-<div class="news-card">
 
-<h3>🎮 Gaming</h3>
+.logo{
 
-<p>
-Yangi o'yinlar va loyihalar.
-</p>
+    font-size:75px;
 
-<button>
-Ko'rish
-</button>
+    color:#00ffff;
 
-</div>
+    letter-spacing:5px;
 
+    text-shadow:
 
-</div>
+    0 0 20px cyan,
 
+    0 0 60px blue;
 
-
-<a class="back" href="index.html">
-⬅ Bosh sahifa
-</a>
+}
 
 
-</div>
+
+h2{
+
+    margin:20px;
+
+    color:#bdefff;
+
+}
 
 
-<script src="script.js"></script>
 
 
-</body>
+/* 🔍 Qidiruv */
 
-</html>
+.search{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+
+
+.search input{
+
+    width:420px;
+
+    padding:18px 25px;
+
+    border-radius:50px;
+
+    border:2px solid cyan;
+
+    background:rgba(0,0,0,.7);
+
+    color:white;
+
+    font-size:18px;
+
+    outline:none;
+
+}
+
+
+
+.search button{
+
+    padding:15px 35px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#0077ff;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+/* 🎮 Kartalar */
+
+.cards{
+
+    display:flex;
+
+    gap:25px;
+
+    margin-top:40px;
+
+}
+
+
+
+.card{
+
+    width:220px;
+
+    padding:25px;
+
+    background:rgba(0,0,0,.7);
+
+    border:2px solid #0077ff;
+
+    border-radius:25px;
+
+    transition:.4s;
+
+}
+
+
+
+.card:hover{
+
+    transform:scale(1.1);
+
+    box-shadow:0 0 35px cyan;
+
+}
+
+
+
+.card h3{
+
+    color:#00ffff;
+
+}
+
+
+
+
+/* 🤖 AI */
+
+.ai-button{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#0077ff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:35px;
+
+    cursor:pointer;
+
+    z-index:20;
+
+    box-shadow:0 0 30px cyan;
+
+}
+
+
+
+
+.ai-box{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:120px;
+
+    width:320px;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    background:rgba(0,0,0,.9);
+
+    border:2px solid cyan;
+
+    display:none;
+
+    z-index:20;
+
+}
+
+
+
+.ai-box input{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:15px;
+
+    border-radius:20px;
+
+    background:black;
+
+    color:white;
+
+    border:1px solid cyan;
+
+}
+
+
+
+.ai-box button{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:#0077ff;
+
+    color:white;
+
+}
+
+
+
+
+footer{
+
+    position:fixed;
+
+    bottom:15px;
+
+    width:100%;
+
+    text-align:center;
+
+    color:#777;
+
+    z-index:5;
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+.logo{
+
+font-size:45px;
+
+}
+
+
+.cards{
+
+flex-direction:column;
+
+}
+
+
+.search input{
+
+width:250px;
+
+}
+
+}
