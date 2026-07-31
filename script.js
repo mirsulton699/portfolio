@@ -1,35 +1,31 @@
-// ⚽ API JOYI
-const API_KEY = "BU_YERGA_API_KALIT";
+// 🔑 API KEY
+const API_KEY = "BU_YERGA_API_KEYINGIZNI_YOZING";
 
 
-// 🌌 KOSMOS ANIMATSIYA
+// 🌌 KOSMOS
 
 const canvas = document.getElementById("space");
-
 
 if(canvas){
 
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
 
-let stars = [];
+let stars=[];
+
 
 for(let i=0;i<250;i++){
 
 stars.push({
 
 x:Math.random()*canvas.width,
-
 y:Math.random()*canvas.height,
-
 size:Math.random()*2+0.5,
-
 opacity:Math.random(),
-
-speed:Math.random()*0.02+0.005
+speed:0.01
 
 });
 
@@ -37,70 +33,54 @@ speed:Math.random()*0.02+0.005
 
 
 
-let meteors = [];
+let meteors=[];
 
 
-function createMeteor(){
+setInterval(()=>{
 
 meteors.push({
 
 x:canvas.width,
-
 y:Math.random()*300,
-
-speedX:-8,
-
-speedY:8
+speed:-8
 
 });
 
-}
+},3000);
 
-
-setInterval(createMeteor,3000);
 
 
 
 function animate(){
 
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
 
 
-stars.forEach(star=>{
+stars.forEach(s=>{
 
 
-star.opacity += star.speed;
+s.opacity+=s.speed;
 
 
-if(star.opacity>1 || star.opacity<0.2){
+if(s.opacity>1 || s.opacity<0.2){
 
-star.speed *= -1;
+s.speed*=-1;
 
 }
 
 
-
 ctx.beginPath();
 
-ctx.fillStyle =
-`rgba(255,255,255,${star.opacity})`;
-
+ctx.fillStyle=`rgba(255,255,255,${s.opacity})`;
 
 ctx.arc(
-star.x,
-star.y,
-star.size,
+s.x,
+s.y,
+s.size,
 0,
 Math.PI*2
 );
-
 
 ctx.fill();
 
@@ -110,15 +90,12 @@ ctx.fill();
 
 
 
-meteors.forEach((m,index)=>{
+meteors.forEach((m,i)=>{
 
 
 ctx.beginPath();
 
 ctx.strokeStyle="white";
-
-ctx.lineWidth=3;
-
 
 ctx.moveTo(m.x,m.y);
 
@@ -127,20 +104,16 @@ m.x+120,
 m.y-120
 );
 
-
 ctx.stroke();
 
 
-
-m.x += m.speedX;
-
-m.y += m.speedY;
+m.x+=m.speed;
 
 
 
-if(m.x < -200){
+if(m.x< -200){
 
-meteors.splice(index,1);
+meteors.splice(i,1);
 
 }
 
@@ -150,7 +123,6 @@ meteors.splice(index,1);
 
 
 requestAnimationFrame(animate);
-
 
 }
 
@@ -163,44 +135,119 @@ animate();
 
 
 
+// ⚽ HAQIQIY FUTBOL NATIJASI
 
 
-// ⚽ LIVE FOOTBALL
-
-function loadFootball(){
+async function loadFootball(){
 
 
-let score = document.getElementById("footballScore");
+let box=document.getElementById("footballScore");
 
 
-if(!score) return;
+if(!box)return;
 
 
 
-if(API_KEY === "BU_YERGA_API_KALIT"){
+try{
 
 
-score.innerHTML =
-"⚽ API kalit kutilmoqda...";
+let response=await fetch(
+
+"https://v3.football.api-sports.io/fixtures?live=all",
+
+{
+
+headers:{
+
+"x-apisports-key":API_KEY
+
+}
+
+}
+
+);
+
+
+
+let data=await response.json();
+
+
+
+if(data.response.length===0){
+
+
+box.innerHTML="⚽ Hozir jonli o'yin yo'q";
+
+
+return;
+
+}
+
+
+
+let result="";
+
+
+
+data.response.forEach(game=>{
+
+
+result+=`
+
+<p>
+
+⚽ ${game.teams.home.name}
+
+<b>
+
+${game.goals.home}
+
+-
+
+${game.goals.away}
+
+</b>
+
+${game.teams.away.name}
+
+<br>
+
+⏱ ${game.fixture.status.long}
+
+</p>
+
+<hr>
+
+`;
+
+
+});
+
+
+
+box.innerHTML=result;
 
 
 }
 
-else{
+
+catch(error){
 
 
-score.innerHTML =
-"⚽ Natijalar yuklanmoqda...";
+box.innerHTML="❌ API xatosi";
+
+
+console.log(error);
 
 
 }
 
 
 }
+
 
 
 loadFootball();
-
 
 
 
@@ -211,26 +258,22 @@ loadFootball();
 function searchSite(){
 
 
-let text =
-document.getElementById("search").value.toLowerCase();
+let text=document
+.getElementById("search")
+.value
+.toLowerCase();
 
 
 
-if(text.includes("free")){
-
-location.href="freefire.html";
-
-}
-
-else if(text.includes("fc")){
-
-location.href="fcmobile.html";
-
-}
-
-else if(text.includes("live") || text.includes("news")){
+if(text.includes("live")||text.includes("news")){
 
 location.href="news.html";
+
+}
+
+else if(text.includes("free")){
+
+location.href="freefire.html";
 
 }
 
@@ -247,34 +290,22 @@ alert("Topilmadi 🔍");
 
 
 
-
 // 🤖 AI
 
 function openAI(){
 
-
 let box=document.getElementById("aiBox");
 
+if(box){
 
-if(!box) return;
-
-
-if(box.style.display==="block"){
-
-box.style.display="none";
-
-}
-
-else{
-
-box.style.display="block";
+box.style.display=
+box.style.display=="block"
+?"none"
+:"block";
 
 }
 
-
 }
-
-
 
 
 
@@ -286,57 +317,11 @@ let input=document.getElementById("aiInput");
 let answer=document.getElementById("aiAnswer");
 
 
-if(!input || !answer) return;
+if(!input||!answer)return;
 
 
-let text=input.value.toLowerCase();
-
-
-
-if(text.includes("salom")){
-
-answer.innerHTML="Salom 👋 Mr.Mirsulton AI ishlayapti 🚀";
-
-}
-
-else if(text.includes("futbol")){
-
-answer.innerHTML="⚽ LIVE Football tizimi tayyorlanmoqda";
-
-}
-
-else if(text.includes("free")){
-
-answer.innerHTML="🔥 Free Fire yangiliklari tayyorlanmoqda";
-
-}
-
-else{
-
-answer.innerHTML="Javob topilmadi 🤖";
-
-}
+answer.innerHTML=
+"🤖 AI ishlayapti...";
 
 
 }
-
-
-
-
-
-
-// 📱 OYNA O'ZGARISHI
-
-window.addEventListener("resize",()=>{
-
-
-if(canvas){
-
-canvas.width=window.innerWidth;
-
-canvas.height=window.innerHeight;
-
-}
-
-
-});
