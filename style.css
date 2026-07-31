@@ -1,142 +1,23 @@
-/* 🌍 Yashil fantastik sayyora */
+body{
 
-.planet{
+    margin:0;
 
-    position:absolute;
-
-    right:12%;
-
-    top:25%;
-
-
-    width:260px;
-
-    height:260px;
-
-
-    border-radius:50%;
-
-
-    background:
-
-    radial-gradient(
-        circle at 30% 30%,
-        #d8ff8a,
-        #42ff00 25%,
-        #008f2d 55%,
-        #003b15 85%
-    );
-
-
-    box-shadow:
-
-    0 0 30px #00ff66,
-
-    0 0 80px #00ff44,
-
-    0 0 150px rgba(0,255,80,.6);
-
-
-
-    animation:planetMove 20s linear infinite;
-
-
-    overflow:hidden;
-
-}
-
-
-
-/* sayyoradagi yashil dog'lar */
-
-.planet::before{
-
-    content:"";
-
-    position:absolute;
+    padding:0;
 
     width:100%;
 
-    height:100%;
+    height:100vh;
+
+    overflow:hidden;
 
 
     background:
 
-    radial-gradient(
-        ellipse,
-        rgba(0,80,20,.7) 10%,
-        transparent 40%
-    );
+    radial-gradient(circle at top,#003b66,#000814 45%,#000);
 
 
-    background-size:80px 60px;
+    color:white;
 
-
-    animation:landMove 12s linear infinite;
-
-}
-
-
-
-/* atmosfera */
-
-.planet::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-8px;
-
-
-    border-radius:50%;
-
-
-    box-shadow:
-
-    inset 0 0 35px #00ff99;
-
-}
-
-
-
-/* aylanish effekti */
-
-@keyframes planetMove{
-
-
-from{
-
-transform:rotate(0deg);
-
-}
-
-
-to{
-
-transform:rotate(360deg);
-
-}
-
-
-}
-
-
-@keyframes landMove{
-
-
-from{
-
-transform:translateX(0);
-
-}
-
-
-to{
-
-transform:translateX(-80px);
-
-}
-
+    font-family:Arial,sans-serif;
 
 }
