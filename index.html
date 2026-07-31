@@ -1,11 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mening Portfolio Saytim</title>
+<title>Mirsulton Portfolio</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#020617,#0b3b66);
+    color:white;
+    min-height:100vh;
+    text-align:center;
+}
+
+.container{
+    padding:100px 20px;
+    animation:show 2s ease;
+}
+
+h1{
+    font-size:45px;
+    color:#00bfff;
+}
+
+h2{
+    margin:20px;
+    color:#8ddcff;
+}
+
+p{
+    max-width:700px;
+    margin:20px auto;
+    font-size:20px;
+    color:#ddd;
+}
+
+.buttons a{
+    display:inline-block;
+    margin:15px;
+    padding:12px 30px;
+    color:white;
+    text-decoration:none;
+    border:2px solid #00bfff;
+    border-radius:30px;
+    transition:0.4s;
+}
+
+.buttons a:hover{
+    background:#00bfff;
+    color:black;
+}
+
+section{
+    padding:40px;
+    animation:show 3s ease;
+}
+
+@keyframes show{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+
 </head>
 
 <body>
-    <h1>Salom, mening saytimgа xush kelibsiz!</h1>
-    <p>Bu mening shaxsiy portfolio saytim.</p>
+
+<div class="container">
+
+<h1>Mirsulton Mirsharifhonov</h1>
+
+<h2>Web Developer</h2>
+
+<p>
+Salom! Men web dasturlashni o'rganayotgan dasturchiman.
+HTML, CSS va JavaScript bilan ishlayman.
+</p>
+
+<div class="buttons">
+<a href="#">Loyihalarim</a>
+<a href="#">Bog'lanish</a>
+</div>
+
+</div>
+
+
+<section>
+<h2>Men haqimda</h2>
+<p>
+Texnologiya, dasturlash va yangi loyihalar yaratishga qiziqaman.
+</p>
+</section>
+
+
+<section>
+<h2>Ko'nikmalar</h2>
+<p>HTML ⭐⭐⭐⭐⭐</p>
+<p>CSS ⭐⭐⭐⭐</p>
+<p>JavaScript ⭐⭐⭐</p>
+</section>
+
+
+<script>
+window.onload=function(){
+console.log("Portfolio sayt ishga tushdi!");
+}
+</script>
+
+
 </body>
 </html>
