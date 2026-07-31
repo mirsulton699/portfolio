@@ -1,17 +1,219 @@
-body {
-    background: #050b1a;
-    color: white;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding-top: 100px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-h1 {
-    color: #00aaff;
-    font-size: 45px;
+
+body{
+
+    min-height:100vh;
+    background:#000814;
+    color:white;
+    overflow:hidden;
 }
 
-p {
-    font-size: 20px;
-    color: #cccccc;
+
+/* kosmos canvas */
+
+#space{
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    z-index:-1;
+
+}
+
+
+
+/* bosh qism */
+
+header{
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+
+.logo{
+
+    font-size:75px;
+
+    color:#00ffff;
+
+    letter-spacing:5px;
+
+    text-shadow:
+
+    0 0 15px #00ffff,
+
+    0 0 50px #0066ff;
+
+}
+
+
+
+header p{
+
+    font-size:28px;
+
+    margin:20px;
+
+    color:#bdefff;
+
+}
+
+
+
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:30px;
+
+}
+
+
+
+.search-box input{
+
+
+    width:420px;
+
+    padding:18px;
+
+    border-radius:40px;
+
+    border:2px solid #00ffff;
+
+    background:rgba(0,0,0,.5);
+
+    color:white;
+
+    font-size:18px;
+
+    outline:none;
+
+}
+
+
+
+.search-box button{
+
+
+    padding:15px 30px;
+
+    border-radius:40px;
+
+    border:none;
+
+    background:#0077ff;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.3s;
+
+}
+
+
+
+.search-box button:hover{
+
+    background:#00ffff;
+
+    color:black;
+
+    transform:scale(1.1);
+
+}
+
+
+
+.hint{
+
+    margin-top:25px;
+
+    color:#aaa;
+
+    font-size:18px;
+
+}
+
+
+
+
+.hidden-links{
+
+    display:none;
+
+}
+
+
+
+
+footer{
+
+    position:fixed;
+
+    bottom:20px;
+
+    width:100%;
+
+    text-align:center;
+
+    color:#777;
+
+}
+
+
+
+/* telefon uchun */
+
+@media(max-width:600px){
+
+
+.logo{
+
+    font-size:45px;
+
+}
+
+
+.search-box{
+
+    flex-direction:column;
+
+}
+
+
+.search-box input{
+
+    width:300px;
+
+}
+
+
 }
